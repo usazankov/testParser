@@ -13,21 +13,21 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CurrencyPreset {
 
-    @SerializedName("Currency")
+    @SerializedName("CurrencyPreset")
     @Expose
     @Valid
-    private List<Currency> currency = new ArrayList<Currency>();
+    private List<Currency> currencyPreset = new ArrayList<Currency>();
 
-    public List<Currency> getCurrency() {
-        return currency;
+    public List<Currency> getCurrencyPreset() {
+        return currencyPreset;
     }
 
-    public void setCurrency(List<Currency> currency) {
-        this.currency = currency;
+    public void setCurrencyPreset(List<Currency> currencyPreset) {
+        this.currencyPreset = currencyPreset;
     }
 
-    public CurrencyPreset withCurrency(List<Currency> currency) {
-        this.currency = currency;
+    public CurrencyPreset withCurrencyPreset(List<Currency> currencyPreset) {
+        this.currencyPreset = currencyPreset;
         return this;
     }
 
@@ -35,9 +35,9 @@ public class CurrencyPreset {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(CurrencyPreset.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("currency");
+        sb.append("currencyPreset");
         sb.append('=');
-        sb.append(((this.currency == null)?"<null>":this.currency));
+        sb.append(((this.currencyPreset == null)?"<null>":this.currencyPreset));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
@@ -45,25 +45,6 @@ public class CurrencyPreset {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.currency == null)? 0 :this.currency.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof CurrencyPreset) == false) {
-            return false;
-        }
-        CurrencyPreset rhs = ((CurrencyPreset) other);
-        return ((this.currency == rhs.currency)||((this.currency!= null)&&this.currency.equals(rhs.currency)));
     }
 
 }

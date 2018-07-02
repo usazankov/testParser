@@ -1,9 +1,14 @@
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -16,7 +21,7 @@ public class ParamsParser {
 	final static byte WordType = 0x4;
 	final static byte DwordType = 0x5;
 	final static byte DoubleType = 0x6;
-	
+	private static String encoding = new String("windows-1251");
 	public static void init() {
 		tlvFields = new HashMap<Integer, String>();
 		tlvFields.put(32840,"CurrencyPreset");
@@ -33,10 +38,23 @@ public class ParamsParser {
 		tlvFields.put(1057, "FromBin");
 		tlvFields.put(1058, "ToBin");
 	}
+	public static int byteArrayToInt(byte[] b) 
+	{
+	    int value = 0;
+	    if(b.length < 4)return value;
+	    for (int i = 0; i < 4; i++) {
+	        int shift = (4 - 1 - i) * 8;
+	        value += (b[i] & 0x000000FF) << shift;
+	    }
+	    return value;
+	}
+	public static double toDouble(byte[] bytes) {
+	    return ByteBuffer.wrap(bytes).getDouble();
+	}
 	public static <T> T parse(final byte[] file, final Class<T> tlvClass) { 
 		T t; 
 		try { 
-			t = parseThrowing(file, tlvClass, true); 
+			t = parseThrowing(file, tlvClass); 
 		} catch (final Exception ex) { 
 			throw new RuntimeException("error parsing file: " 
 					+ tlvClass.getName(), ex); 
@@ -45,36 +63,72 @@ public class ParamsParser {
 	} 
 
 	private static <T> T parseThrowing(final byte[] file, 
-			final Class<T> tlvClass, boolean isRoot) throws InstantiationException, 
-	IllegalAccessException{ 
-		
-		Set<String> hashSet = new HashSet<String>();
+			final Class<T> tlvClass) throws InstantiationException, 
+	IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException, UnsupportedEncodingException{ 
+		String name = tlvClass.getName();
+		T rootObject = tlvClass.newInstance(); 
+		Map<String, Field> hashMap = new HashMap<String, Field>();
 		final Field[] fields = tlvClass.getDeclaredFields();
 		
 		//Смотрим какие поля определены в данном классе
 		for (Field field : fields) {
 			final SerializedName tlvFieldAnnotation = field.getAnnotation(SerializedName.class);
-			//Если есть поля с аннотацией SerializedName, то добавляем в множество
+			//Если есть поля с аннотацией SerializedName, то добавляем в таблицу соответствия имени к полю класса
 			if(tlvFieldAnnotation != null) {
-				hashSet.add(tlvFieldAnnotation.value());
+				hashMap.put(tlvFieldAnnotation.value(), field);
 			}
 		}
 		
 		List<TLVDataObj> list = TLVParser.getTLVDataObjList(file);
+	
 		for(TLVDataObj obj: list) {
 			//По идентификатору тэга получаем соответствующее ему имя класса
 			String nameClass = tlvFields.get(obj.getTagId());
-			//Проверяем, есть ли такое имя класса в раннее определенном множестве
-			if(hashSet.contains(nameClass)) {
-				final T tlvObject = tlvClass.newInstance(); 
-				if(obj.isConstructed()) {
-					
-				}else {
-					
+			//Проверяем, есть ли такое имя класса в раннее определенной таблице: имя аннотации - поле
+			if(hashMap.containsKey(nameClass)) {
+				Field field = hashMap.get(nameClass);
+				//Получаем доступ к полю для возможности получения и установки значения
+				field.setAccessible(true);
+				final Class<?> fieldType = field.getType();
+				if(obj.isConstructed()) {//Если вложенный тэг
+					//Массив объектов
+					if(fieldType == List.class) {
+						Type type = field.getGenericType();
+						if (type instanceof ParameterizedType) {
+							ParameterizedType pType = (ParameterizedType)type;
+							//Работаем только с объектами, у которых один параметр дженерика:
+							Class<?> c = (Class<?>)pType.getActualTypeArguments()[0];
+							//Получаем метод добавления элемента
+							Method method = fieldType.getMethod("add", Object.class);
+							//Получаем сам список
+							Object listObjects = field.get(rootObject);
+							List<TLVDataObj> listTLV = TLVParser.getTLVDataObjList(obj.getValue());
+							for(TLVDataObj temp: listTLV) {
+								//Рекурсивно создаем объект элемента списка
+								Object item = parseThrowing(temp.getValue(), c);
+								//Вызываем метод добавления элемента
+								method.invoke(listObjects, item );
+							}
+						}
+					}
+				}else {//Если не вложенный тэг - значит тип параметра примитивный
+					byte[] array = obj.getValue();
+					if(fieldType == String.class) {
+						String value = new String(Arrays.copyOfRange(array, 1, array.length), encoding);
+						field.set(rootObject, value);
+					}else if(fieldType == Integer.class) {
+						Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
+						field.set(rootObject, value);
+					}else if(fieldType == Double.class) {
+						Double value = toDouble(Arrays.copyOfRange(array, 1, array.length));
+						field.set(rootObject, value);
+					}
 				}
-				
+
 			}
+
 		}
+		return rootObject;
 		/*final Field[] fields = tlvClass.getDeclaredFields(); 
 		final Map<Integer, Field> tlvFields = new HashMap<Integer, Field>(); 
 		final T tlvObject = tlvClass.newInstance(); 
@@ -151,6 +205,5 @@ public class ParamsParser {
 			idx += length; 
 		} 
 		return tlvObject; */
-		return null;
 	} 
 }

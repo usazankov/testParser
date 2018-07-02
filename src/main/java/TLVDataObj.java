@@ -5,7 +5,11 @@ public class TLVDataObj {
 	private int length;
 	private byte[] value;
 	public final static int TagHeaderLength = 6;
+	private byte[] data;
 	TLVDataObj(byte[] data){
+		
+		this.data = data;
+		
 		//Получаем идентификатор тэга - 2 байта
 		tagId = (data[0]<< 8)&0x0000ff00|
 			    (data[1]<< 0)&0x000000ff;
@@ -20,7 +24,12 @@ public class TLVDataObj {
 		value = Arrays.copyOfRange(data, 6, length + TagHeaderLength);
 		
 	}
-	
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+	public byte[] getData() {
+		return data;
+	}
 	public void setTagId(int tagId) {
 		this.tagId = tagId;
 	}
@@ -46,7 +55,8 @@ public class TLVDataObj {
 	}
 	
 	boolean isConstructed() {
-		if(((tagId >> 15) & 1) == 1)return true;
-		return false;
+		return (((tagId >> 15) & 1) == 1) ? true : false;
+		//if(((tagId >> 15) & 1) == 1)return true;
+		//return false;
 	}
 }

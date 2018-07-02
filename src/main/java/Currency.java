@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -139,30 +140,6 @@ public class Currency {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.conversionFactor == null)? 0 :this.conversionFactor.hashCode()));
-        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
-        result = ((result* 31)+((this.alphabeticCode == null)? 0 :this.alphabeticCode.hashCode()));
-        result = ((result* 31)+((this.minorUnit == null)? 0 :this.minorUnit.hashCode()));
-        result = ((result* 31)+((this.binRanges == null)? 0 :this.binRanges.hashCode()));
-        result = ((result* 31)+((this.numericCode == null)? 0 :this.numericCode.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof Currency) == false) {
-            return false;
-        }
-        Currency rhs = ((Currency) other);
-        return (((((((this.conversionFactor == rhs.conversionFactor)||((this.conversionFactor!= null)&&this.conversionFactor.equals(rhs.conversionFactor)))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.alphabeticCode == rhs.alphabeticCode)||((this.alphabeticCode!= null)&&this.alphabeticCode.equals(rhs.alphabeticCode))))&&((this.minorUnit == rhs.minorUnit)||((this.minorUnit!= null)&&this.minorUnit.equals(rhs.minorUnit))))&&((this.binRanges == rhs.binRanges)||((this.binRanges!= null)&&this.binRanges.equals(rhs.binRanges))))&&((this.numericCode == rhs.numericCode)||((this.numericCode!= null)&&this.numericCode.equals(rhs.numericCode))));
     }
 
 }

@@ -21,10 +21,10 @@ public class DefBinRange {
     private Integer panLengthFinish;
     @SerializedName("FromBin")
     @Expose
-    private Integer fromBin;
+    private String fromBin;
     @SerializedName("ToBin")
     @Expose
-    private Integer toBin;
+    private String toBin;
 
     public String getName() {
         return name;
@@ -65,28 +65,28 @@ public class DefBinRange {
         return this;
     }
 
-    public Integer getFromBin() {
+    public String getFromBin() {
         return fromBin;
     }
 
-    public void setFromBin(Integer fromBin) {
+    public void setFromBin(String fromBin) {
         this.fromBin = fromBin;
     }
 
-    public DefBinRange withFromBin(Integer fromBin) {
+    public DefBinRange withFromBin(String fromBin) {
         this.fromBin = fromBin;
         return this;
     }
 
-    public Integer getToBin() {
+    public String getToBin() {
         return toBin;
     }
 
-    public void setToBin(Integer toBin) {
+    public void setToBin(String toBin) {
         this.toBin = toBin;
     }
 
-    public DefBinRange withToBin(Integer toBin) {
+    public DefBinRange withToBin(String toBin) {
         this.toBin = toBin;
         return this;
     }
@@ -121,29 +121,6 @@ public class DefBinRange {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
-        result = ((result* 31)+((this.toBin == null)? 0 :this.toBin.hashCode()));
-        result = ((result* 31)+((this.panLengthStart == null)? 0 :this.panLengthStart.hashCode()));
-        result = ((result* 31)+((this.panLengthFinish == null)? 0 :this.panLengthFinish.hashCode()));
-        result = ((result* 31)+((this.fromBin == null)? 0 :this.fromBin.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof DefBinRange) == false) {
-            return false;
-        }
-        DefBinRange rhs = ((DefBinRange) other);
-        return ((((((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name)))&&((this.toBin == rhs.toBin)||((this.toBin!= null)&&this.toBin.equals(rhs.toBin))))&&((this.panLengthStart == rhs.panLengthStart)||((this.panLengthStart!= null)&&this.panLengthStart.equals(rhs.panLengthStart))))&&((this.panLengthFinish == rhs.panLengthFinish)||((this.panLengthFinish!= null)&&this.panLengthFinish.equals(rhs.panLengthFinish))))&&((this.fromBin == rhs.fromBin)||((this.fromBin!= null)&&this.fromBin.equals(rhs.fromBin))));
     }
 
 }
