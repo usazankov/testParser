@@ -1,0 +1,162 @@
+<Block>
+Checksum="BC FE 1B E1 4A 18 67 6E 0B 12 74 7E 09 CC 97 54"
+Type="81"
+Path="Terminal.pst"
+BlockSize="1526"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="B3 5F 53 11 DA 74 68 20 6B F6 95 DC B7 F1 71 AC"
+Type="81"
+Path="Common.pst"
+BlockSize="379"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="09 42 EC 29 E1 63 66 1D 82 76 DE 4E 58 A1 4F 5B"
+Type="81"
+Path="Net.pst"
+BlockSize="109"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="6C 0C 2E 2F BF 3B C7 96 15 07 4C 09 5F 4D A9 D7"
+Type="81"
+Path="PhoneZone.pst"
+BlockSize="105"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="AE AF B2 15 ED 01 91 38 3E 24 A1 4B 1F 62 4A 5A"
+Type="81"
+Path="Possessor.pst"
+BlockSize="367"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="2A 06 E0 77 5A 04 00 43 F9 E9 8A 86 02 25 76 33"
+Type="81"
+Path="Currency.pst"
+BlockSize="455"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="E1 D1 6F F6 7D CE 7B AC 71 78 B9 3E 2A 36 3D 4B"
+Type="81"
+Path="UsersGroups.pst"
+BlockSize="1101"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="31 99 A7 39 5F 00 3F DA 79 72 FA B0 E7 00 00 B8"
+Type="81"
+Path="Template.pst"
+BlockSize="18311"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="64 72 1A D7 BF FA AA EB BC B1 42 52 C1 80 89 3B"
+Type="81"
+Path="Profile.pst"
+BlockSize="918"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="66 EC 80 13 5F 37 09 DE 95 48 09 0D 90 8B 33 C7"
+Type="81"
+Path="Card.pst"
+BlockSize="426"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="2D A6 90 03 79 7F D0 A4 1E 25 ED 2C CF 5D 46 DA"
+Type="81"
+Path="Payments.pst"
+BlockSize="177"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="CF A7 EA EA B4 C8 F0 1C 56 D9 1A 0E 33 54 8D C3"
+Type="81"
+Path="Acquiring.pst"
+BlockSize="674"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="58 F9 E4 E4 E2 C2 36 42 C7 2C 0A FC 8F DC E2 9D"
+Type="81"
+Path="Paysys.pst"
+BlockSize="2431"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="6C 3E 87 2E 84 E2 78 0A F8 A7 A9 80 1C EC 43 D6"
+Type="81"
+Path="Keys.pst"
+BlockSize="120"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="67 4F DD 42 D3 86 75 A2 C5 8F 7E D2 A7 71 03 2A"
+Type="81"
+Path="NSP.pst"
+BlockSize="107"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="AF FF 62 63 75 27 8E F4 F0 83 E0 F2 85 8B CF 63"
+Type="81"
+Path="Plugins.pst"
+BlockSize="6"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="F7 97 B9 EC 0D 2C DA 31 E4 65 46 4B 63 7B 0C AF"
+Type="81"
+Path="LoyaltyTemp.pst"
+BlockSize="183"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="B6 78 EE 52 00 0D 97 53 DD DE 33 E4 2B 3C 5F 68"
+Type="81"
+Path="CardProductGroup.pst"
+BlockSize="6"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="E0 3C D3 4B 13 05 CE 3F C3 8F FC D0 0B FD 42 E5"
+Type="81"
+Path="Account.pst"
+BlockSize="6"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="F0 E9 88 98 B6 EA 14 4B 21 8F 4F B9 A4 65 E6 41"
+Type="81"
+Path="Newpar.pst"
+BlockSize="35"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="23 51 1E FB 52 D3 10 BE 49 55 50 B8 2C 18 5D 01"
+Type="80"
+Path="selfcert.pem"
+BlockSize="1233"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="9F 2E 19 EB 5D 2F 62 02 A2 D5 A0 76 C3 93 16 B7"
+Type="80"
+Path="clientcert.p12"
+BlockSize="2501"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="89 48 F0 6F B1 78 7F 50 70 A9 47 24 33 10 84 6A"
+Type="80"
+Path="CONFIG"
+BlockSize="413"
+RecordSize="1"
+</Block>
+

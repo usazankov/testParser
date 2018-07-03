@@ -10,9 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 public class LibraryTest {
-
+	
+	
     @Test public void testSomeLibraryMethod() throws IOException {
 
         StringBuilder sb = new StringBuilder();
@@ -23,11 +25,45 @@ public class LibraryTest {
 	    //    throw new FileNotFoundException(file.getName());
 	    //}
 	    Path path = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Currency.pst");
+	    Path path2 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Paysys.pst");
+	    Path path3 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Card.pst");
+	    Path path4 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Keys.pst");
+	    Path path5 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Account.pst");
 	    byte[] data = Files.readAllBytes(path);
+	    byte[] data2 = Files.readAllBytes(path2);
+	    byte[] data3 = Files.readAllBytes(path3);
+	    byte[] data4 = Files.readAllBytes(path4);
+	    byte[] data5 = Files.readAllBytes(path5);
         ParamsParser.init();
         CurrencyPreset cur = ParamsParser.parse(data, CurrencyPreset.class);
+        PaymentSystemPreset paym = ParamsParser.parse(data2, PaymentSystemPreset.class);
+        CardProductPreset product = ParamsParser.parse(data3, CardProductPreset.class);
+        SecurityKeyPreset keys = ParamsParser.parse(data4, SecurityKeyPreset.class);
+        AccountTypePreset account = ParamsParser.parse(data5, AccountTypePreset.class);
+        keys.getSecurityKeyPreset();
+        System.out.println(bytesToHex(toByteArray(paym.getPaymentSystemPreset().get(0).getEmvTDOL())));
         System.out.println("End");
         //preset.getCurrency().add(e)
+    }
+    
+    public static String bytesToHex(byte[] bytes) {
+        final char[] hexArray = "0123456789ABCDEF".toCharArray();
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+    
+    public static byte[] toByteArray(List<Byte> in) {
+        final int n = in.size();
+        byte ret[] = new byte[n];
+        for (int i = 0; i < n; i++) {
+            ret[i] = in.get(i);
+        }
+        return ret;
     }
     
     private static byte[] toBytes(char[] chars) {

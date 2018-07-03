@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Currency {
 
+    @SerializedName("Anchor")
+    @Expose
+    private Integer anchor;
     @SerializedName("Name")
     @Expose
     private String name;
@@ -27,6 +30,19 @@ public class Currency {
     @Expose
     @Valid
     private List<DefBinRange> binRanges = new ArrayList<DefBinRange>();
+
+    public Integer getAnchor() {
+        return anchor;
+    }
+
+    public void setAnchor(Integer anchor) {
+        this.anchor = anchor;
+    }
+
+    public Currency withAnchor(Integer anchor) {
+        this.anchor = anchor;
+        return this;
+    }
 
     public String getName() {
         return name;
@@ -110,6 +126,10 @@ public class Currency {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(Currency.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("anchor");
+        sb.append('=');
+        sb.append(((this.anchor == null)?"<null>":this.anchor));
+        sb.append(',');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));

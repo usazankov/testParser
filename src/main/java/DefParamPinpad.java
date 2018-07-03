@@ -4,22 +4,26 @@ import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.annotations.SerializedName;
 
-public enum DefSwitch {
+public enum DefParamPinpad {
 
     @SerializedName("0")
-    NO(0),
+    Pinpad_Hardware(0),
     @SerializedName("1")
-    YES(1);
+    Pinpad_Virtual1(1),
+    @SerializedName("2")
+    Pinpad_Virtual2(2),
+    @SerializedName("3")
+    Pinpad_Virtual3(3);
     private final Integer value;
-    private final static Map<Integer, DefSwitch> CONSTANTS = new HashMap<Integer, DefSwitch>();
+    private final static Map<Integer, DefParamPinpad> CONSTANTS = new HashMap<Integer, DefParamPinpad>();
 
     static {
-        for (DefSwitch c: values()) {
+        for (DefParamPinpad c: values()) {
             CONSTANTS.put(c.value, c);
         }
     }
 
-    private DefSwitch(Integer value) {
+    private DefParamPinpad(Integer value) {
         this.value = value;
     }
 
@@ -27,8 +31,8 @@ public enum DefSwitch {
         return this.value;
     }
 
-    public static DefSwitch fromValue(Integer value) {
-        DefSwitch constant = CONSTANTS.get(value);
+    public static DefParamPinpad fromValue(Integer value) {
+        DefParamPinpad constant = CONSTANTS.get(value);
         if (constant == null) {
             throw new IllegalArgumentException((value +""));
         } else {
