@@ -53,7 +53,7 @@ public class LibraryTest {
             CardProductPreset product = parser.parse(data3, CardProductPreset.class);
             SecurityKeyPreset keys = parser.parse(data4, SecurityKeyPreset.class);
             AccountTypePreset account = parser.parse(data5, AccountTypePreset.class);
-            System.out.println(bytesToHex(toByteArray(paym.getPaymentSystemPreset().get(0).getEmvTDOL())));
+            paym.getPaymentSystemPreset();
         }catch(Exception ex) {
         	System.out.println("Error parsing:" + ex);
         }
@@ -61,8 +61,7 @@ public class LibraryTest {
         //
         //keys.getSecurityKeyPreset();
         //account.getAccountTypePreset();
-        
-        System.out.println("End");
+       
         //preset.getCurrency().add(e)
     }
     class FooDeserializerFromJsonWithDifferentFields implements JsonDeserializer<PaymentSystemPreset>{

@@ -47,4 +47,23 @@ public class PaymentSystemPreset {
         return sb.toString();
     }
 
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result = ((result* 31)+((this.paymentSystemPreset == null)? 0 :this.paymentSystemPreset.hashCode()));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof PaymentSystemPreset) == false) {
+            return false;
+        }
+        PaymentSystemPreset rhs = ((PaymentSystemPreset) other);
+        return ((this.paymentSystemPreset == rhs.paymentSystemPreset)||((this.paymentSystemPreset!= null)&&this.paymentSystemPreset.equals(rhs.paymentSystemPreset)));
+    }
+
 }

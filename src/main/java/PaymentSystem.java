@@ -35,6 +35,10 @@ public class PaymentSystem {
     @Expose
     @Valid
     private List<Byte> emvDDOL = new ArrayList<Byte>();
+    @SerializedName("EmvCAPKs")
+    @Expose
+    @Valid
+    private List<EmvCAPK> emvCAPKs = new ArrayList<EmvCAPK>();
     @SerializedName("ReferralCallCenter")
     @Expose
     private String referralCallCenter;
@@ -143,6 +147,19 @@ public class PaymentSystem {
         return this;
     }
 
+    public List<EmvCAPK> getEmvCAPKs() {
+        return emvCAPKs;
+    }
+
+    public void setEmvCAPKs(List<EmvCAPK> emvCAPKs) {
+        this.emvCAPKs = emvCAPKs;
+    }
+
+    public PaymentSystem withEmvCAPKs(List<EmvCAPK> emvCAPKs) {
+        this.emvCAPKs = emvCAPKs;
+        return this;
+    }
+
     public String getReferralCallCenter() {
         return referralCallCenter;
     }
@@ -192,6 +209,10 @@ public class PaymentSystem {
         sb.append('=');
         sb.append(((this.emvDDOL == null)?"<null>":this.emvDDOL));
         sb.append(',');
+        sb.append("emvCAPKs");
+        sb.append('=');
+        sb.append(((this.emvCAPKs == null)?"<null>":this.emvCAPKs));
+        sb.append(',');
         sb.append("referralCallCenter");
         sb.append('=');
         sb.append(((this.referralCallCenter == null)?"<null>":this.referralCallCenter));
@@ -202,6 +223,34 @@ public class PaymentSystem {
             sb.append(']');
         }
         return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        result = ((result* 31)+((this.hotListPath == null)? 0 :this.hotListPath.hashCode()));
+        result = ((result* 31)+((this.emvTDOL == null)? 0 :this.emvTDOL.hashCode()));
+        result = ((result* 31)+((this.referralCallCenter == null)? 0 :this.referralCallCenter.hashCode()));
+        result = ((result* 31)+((this.pName == null)? 0 :this.pName.hashCode()));
+        result = ((result* 31)+((this.emvCAPKs == null)? 0 :this.emvCAPKs.hashCode()));
+        result = ((result* 31)+((this.anchor == null)? 0 :this.anchor.hashCode()));
+        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
+        result = ((result* 31)+((this.rID == null)? 0 :this.rID.hashCode()));
+        result = ((result* 31)+((this.nameQ == null)? 0 :this.nameQ.hashCode()));
+        result = ((result* 31)+((this.emvDDOL == null)? 0 :this.emvDDOL.hashCode()));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof PaymentSystem) == false) {
+            return false;
+        }
+        PaymentSystem rhs = ((PaymentSystem) other);
+        return (((((((((((this.hotListPath == rhs.hotListPath)||((this.hotListPath!= null)&&this.hotListPath.equals(rhs.hotListPath)))&&((this.emvTDOL == rhs.emvTDOL)||((this.emvTDOL!= null)&&this.emvTDOL.equals(rhs.emvTDOL))))&&((this.referralCallCenter == rhs.referralCallCenter)||((this.referralCallCenter!= null)&&this.referralCallCenter.equals(rhs.referralCallCenter))))&&((this.pName == rhs.pName)||((this.pName!= null)&&this.pName.equals(rhs.pName))))&&((this.emvCAPKs == rhs.emvCAPKs)||((this.emvCAPKs!= null)&&this.emvCAPKs.equals(rhs.emvCAPKs))))&&((this.anchor == rhs.anchor)||((this.anchor!= null)&&this.anchor.equals(rhs.anchor))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.rID == rhs.rID)||((this.rID!= null)&&this.rID.equals(rhs.rID))))&&((this.nameQ == rhs.nameQ)||((this.nameQ!= null)&&this.nameQ.equals(rhs.nameQ))))&&((this.emvDDOL == rhs.emvDDOL)||((this.emvDDOL!= null)&&this.emvDDOL.equals(rhs.emvDDOL))));
     }
 
 }

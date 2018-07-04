@@ -13,10 +13,7 @@ public class TLVDataObj {
 		//Получаем идентификатор тэга - 2 байта
 		tagId = (data[0]<< 8)&0x0000ff00|
 			    (data[1]<< 0)&0x000000ff;
-		if(tagId == 65535) {
-			int a = 0;
-			System.out.println(a);;
-		}
+
 		//Получаем длину тэга - 4 байта
 		length = (data[2]<<24)&0xff000000|
 			       (data[3]<<16)&0x00ff0000|

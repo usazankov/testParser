@@ -23,6 +23,13 @@
 				"CPName": {
 					"type": "string"
 				},
+				"PIX": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
 				"BinRanges": {
 					"type": "array",
 					"items": {

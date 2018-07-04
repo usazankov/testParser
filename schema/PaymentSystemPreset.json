@@ -50,8 +50,76 @@
 						"type" : "object"
 					}
 				},
+				"EmvCAPKs":{
+					"type": "array",
+					"items":{
+						"$ref": "#/definitions/EmvCAPK" 
+					}
+				},
 				"ReferralCallCenter": {
 					"type": "string"
+				}
+			}
+		},
+		"EmvCAPK":{
+			"type": "object",
+			"properties":{
+				"Anchor": {
+					"type": "integer"
+				},
+				"Index": {
+					"javaType" : "java.lang.Byte",
+					"type" : "object"
+				},
+				"Length": {
+					"type" : "integer"
+				},
+				"Exponent": {
+					"$ref": "#/definitions/ParamExponentType" 
+				},
+				"Module": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CheckValue": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"ExpiryDate":{
+					"type": "string"
+				},
+				"RevocationSertificates": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ParamRevocationSertificate"
+					}
+				}
+			}
+		},
+		"ParamExponentType": {
+			"type": "integer",
+			"default": 1,
+			"enum": [1, 2],
+			"javaEnumNames": ["ExponentType_3","ExponentType_2_16_1"]
+		},
+		"ParamRevocationSertificate": {
+			"type": "object",
+			"properties":{
+				"Anchor":{
+					"type": "integer"
+				},
+				"SertSerialNumber": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
 				}
 			}
 		}

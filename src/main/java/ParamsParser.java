@@ -60,6 +60,16 @@ public class ParamsParser {
 		tlvFields.put(1103,"EmvTDOL");
 		tlvFields.put(1104,"EmvDDOL");
 		tlvFields.put(1154,"ReferralCallCenter");
+		tlvFields.put(32795,"EmvCAPK");
+		tlvFields.put(1067,"Index");
+		tlvFields.put(1068,"Length");
+		tlvFields.put(1070,"Exponent");
+		tlvFields.put(1069,"Module");
+		tlvFields.put(1098,"CheckValue");
+		tlvFields.put(1071,"ExpiryDate");
+		tlvFields.put(32950,"RevocationSertificates");
+		tlvFields.put(32951,"RevocationSertificate");
+		tlvFields.put(1494,"SertSerialNumber");
 		
 		//CardProductPreset
 		tlvFields.put(32789,"CardProduct");
@@ -235,6 +245,9 @@ public class ParamsParser {
 					}
 				}
 			}
+		}else{
+			System.out.println("Тип " + fieldType.toString() + " не поддерживается,"
+					+ "значение с TagID: " + obj.getTagId() + " не будет обработано" );
 		}
 	}
 }
