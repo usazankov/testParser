@@ -1,0 +1,16 @@
+{
+	"id": "PrefLanguageItem",
+	"type": "object",
+	"properties":{
+		"Anchor": {
+			"type": "integer"
+		},
+		"PrefLanguage":{
+			"type": "string"
+		},
+		"Item":{
+			"type": "string"
+		}
+	}
+	
+}

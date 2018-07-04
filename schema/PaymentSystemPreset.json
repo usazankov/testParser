@@ -1,0 +1,59 @@
+{
+    "id": "PaymentSystemPreset",
+    "description": "schema for PaymentSystemPreset",
+    "type": "object",
+	
+    "properties":{
+		"PaymentSystemPreset":{
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/PaymentSystem"
+			}
+		}
+	},
+	"definitions":{
+		"PaymentSystem":{
+			"properties":{
+				"Anchor": {
+					"type": "integer"
+				},
+				"PName": {
+					"type": "string"
+				},
+				"Name": {
+					"$ref": "DefPaymentSystem.json"
+				},
+				"NameQ": {
+					"$ref": "DefPaymentSystem.json"
+				},
+				"HotListPath": {
+					"type": "string"
+				},
+				"RID": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"EmvTDOL": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"EmvDDOL": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"ReferralCallCenter": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

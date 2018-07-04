@@ -6,18 +6,17 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
 public class ParamsParser {
-	static Map<Integer, String> tlvFields;
-	static Map<Integer, String> tlvFieldsRoot;
+	Map<Integer, String> tlvFields;
+	Map<Integer, String> tlvFieldsRoot;
+
 	final static byte UnknownType = 0x0;
 	final static byte HEXType = 0x1;
 	final static byte StringType = 0x2;
@@ -26,7 +25,7 @@ public class ParamsParser {
 	final static byte DwordType = 0x5;
 	final static byte DoubleType = 0x6;
 	private static String encoding = new String("windows-1251");
-	public static void init() {
+	public void init() {
 		
 		tlvFieldsRoot = new HashMap<Integer, String>();
 		tlvFieldsRoot.put(32840,"CurrencyPreset");
@@ -90,7 +89,8 @@ public class ParamsParser {
 		tlvFields.put(1126,"Item");
 		
 	}
-	public static int byteArrayToInt(byte[] b) 
+	
+	public int byteArrayToInt(byte[] b) 
 	{
 	    int value = 0;
 	    int length = b.length > 4 ? 4 : b.length;
@@ -100,24 +100,16 @@ public class ParamsParser {
 	    }
 	    return value;
 	}
-	public static double toDouble(byte[] bytes) {
+	public double toDouble(byte[] bytes) {
 	    return ByteBuffer.wrap(bytes).getDouble();
 	}
-	public static <T> T parse(final byte[] file, final Class<T> tlvClass) { 
-		T t; 
-		try { 
-			t = parseThrowing(file, tlvClass, true); 
-		} catch (final Exception ex) { 
-			throw new RuntimeException("error parsing file: " 
-					+ tlvClass.getName(), ex); 
-		} 
+	public <T> T parse(final byte[] file, final Class<T> tlvClass) throws Exception{ 
+		T t = parseThrowing(file, tlvClass, true); 
 		return t; 
 	} 
-
-	private static <T> T parseThrowing(final byte[] file, 
-			final Class<T> tlvClass, boolean isRoot) throws InstantiationException, 
-	IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException, UnsupportedEncodingException{ 
-		String name = tlvClass.getName();
+	
+	private <T> T parseThrowing(final byte[] file, 
+			final Class<T> tlvClass, boolean isRoot) throws Exception{ 
 		T rootObject = tlvClass.newInstance(); 
 		Map<String, Field> hashMap = new HashMap<String, Field>();
 		final Field[] fields = tlvClass.getDeclaredFields();
@@ -130,27 +122,33 @@ public class ParamsParser {
 				hashMap.put(tlvFieldAnnotation.value(), field);
 			}
 		}
-		
 		List<TLVDataObj> list = TLVParser.getTLVDataObjList(file);
-	
 		for(TLVDataObj obj: list) {
 			//По идентификатору тэга получаем соответствующее ему имя класса
 			String nameClass;
 			if(isRoot) nameClass = tlvFieldsRoot.get(obj.getTagId());
 			else nameClass = tlvFields.get(obj.getTagId());
+			if(nameClass == null) {
+				System.out.println("In HashTable of TagId-ClassName  there is no field of the corresponding tagId: " 
+			+ obj.getTagId() + " Current parsing class: "+ tlvClass.getName());
+			}
 			//Проверяем, есть ли такое имя класса в раннее определенной таблице: имя аннотации - поле
 			if(hashMap.containsKey(nameClass)) {
 				Field field = hashMap.get(nameClass);
 				//Получаем доступ к полю для возможности получения и установки значения
 				field.setAccessible(true);
-				final Class<?> fieldType = field.getType();
 				if(obj.isConstructed()) {//Если вложенный тэг
+					final Class<?> fieldType = field.getType();
 					//Массив объектов
 					if(fieldType == List.class) {
 						Type type = field.getGenericType();
 						if (type instanceof ParameterizedType) {
 							ParameterizedType pType = (ParameterizedType)type;
 							//Работаем только с объектами, у которых один параметр дженерика:
+							if(pType.getActualTypeArguments().length != 1) {
+								throw new RuntimeException("number of generic parameters is not one, error parsing on tagId: " 
+							+ String.valueOf(obj.getTagId()) + tlvClass.getName());
+							}
 							Class<?> c = (Class<?>)pType.getActualTypeArguments()[0];
 							//Получаем метод добавления элемента
 							Method method = fieldType.getMethod("add", Object.class);
@@ -165,46 +163,78 @@ public class ParamsParser {
 							}
 						}
 					}else { //Иначе - это какой-то другой объект
-						System.out.println("Different Object");
+						throw new RuntimeException("Unsupported Object, error parsing on tagId: " + String.valueOf(obj.getTagId())+ " class name: " + tlvClass.getName()); 
 					}
-				}else {//Если не вложенный тэг - значит тип параметра примитивный
-					byte[] array = obj.getValue();
-					if(fieldType == String.class) {
-						String value = new String(Arrays.copyOfRange(array, 1, array.length), encoding);
-						field.set(rootObject, value);
-					}else if(fieldType == Integer.class) {
-						Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
-						field.set(rootObject, value);
-					}else if(fieldType == Double.class) {
-						Double value = toDouble(Arrays.copyOfRange(array, 1, array.length));
-						field.set(rootObject, value);
-					}else if(fieldType.isEnum()){
-						Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
-						Method method = fieldType.getMethod("fromValue", Integer.class);
-						Object objEnum = field.get(rootObject);
-						objEnum = method.invoke(objEnum, value);
-						field.set(rootObject, objEnum);
-					}else if(fieldType == List.class){
-						Type type = field.getGenericType();
-						if (type instanceof ParameterizedType) {
-							ParameterizedType pType = (ParameterizedType)type;
-							//Работаем только с объектами, у которых один параметр дженерика:
-							Class<?> c = (Class<?>)pType.getActualTypeArguments()[0];
-							//Получаем сам список
-							Object listByte = field.get(rootObject);
-							if( listByte instanceof List && c == Byte.class) {
-								List<Byte> listObjects = (List<Byte>)listByte;
-								byte[] val = Arrays.copyOfRange(array, 1, array.length);
-								for(byte b: val){
-									listObjects.add(b);
-								}
-								field.set(rootObject, listObjects);
-							}
-						}
+				}else {//Если не вложенный тэг - значит тип параметра 'примитивный'
+					try {
+						parsePrimitiveType(rootObject, field, obj);
+					}catch(Exception ex) {
+						throw new RuntimeException("Error parsing on TagId: " + String.valueOf(obj.getTagId()) 
+						+ "\nClass name: " + tlvClass.getName() + "\nChild exception: " + ex, ex); 
 					}
+				}
+			}else {
+				if(nameClass != null) {
+					System.out.println("In Class " + tlvClass.getName() +" there is no field " + nameClass + 
+							" of the corresponding tagId: " + obj.getTagId());
 				}
 			}
 		}
 		return rootObject;
 	} 
+	
+	private void parsePrimitiveType(Object rootObject, Field field, TLVDataObj obj) throws IllegalArgumentException, 
+	IllegalAccessException, UnsupportedEncodingException, NoSuchMethodException, SecurityException, InvocationTargetException {
+		final Class<?> fieldType = field.getType();
+		byte[] array = obj.getValue();
+		if(fieldType == String.class) {
+			String value = new String(Arrays.copyOfRange(array, 1, array.length), encoding);
+			field.set(rootObject, value);
+		}else if(fieldType == Integer.class) {
+			Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
+			field.set(rootObject, value);
+		}else if(fieldType == Double.class) {
+			Double value = toDouble(Arrays.copyOfRange(array, 1, array.length));
+			field.set(rootObject, value);
+		}else if(fieldType.isEnum()){
+			Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
+			Method method = fieldType.getMethod("fromValue", Integer.class);
+			Object objEnum = field.get(rootObject);
+			objEnum = method.invoke(objEnum, value);
+			field.set(rootObject, objEnum);
+		}else if(fieldType == List.class){
+			Type type = field.getGenericType();
+			if (type instanceof ParameterizedType) {
+				ParameterizedType pType = (ParameterizedType)type;
+				//Работаем только с объектами, у которых один параметр дженерика:
+				Class<?> c = (Class<?>)pType.getActualTypeArguments()[0];
+				//Получаем сам список
+				Object listByte = field.get(rootObject);
+				//Обработка массива байт
+				if(listByte instanceof List){
+					if(c == Byte.class) {
+						@SuppressWarnings("unchecked")
+						List<Byte> listObjects = (List<Byte>)listByte;
+						byte[] val = Arrays.copyOfRange(array, 1, array.length);
+						for(byte b: val){
+							listObjects.add(b);
+						}
+						field.set(rootObject, listObjects);
+					//Обработка массива перечислений
+					}else if(c.isEnum()) {
+						byte[] val = Arrays.copyOfRange(array, 1, array.length);
+						Method fromValue = c.getMethod("fromValue", Integer.class);
+						//Получаем сам список
+						Object listObjects = field.get(rootObject);
+						//Получаем метод добавления элемента
+						Method method = fieldType.getMethod("add", Object.class);
+						for(byte b: val){
+							Object objEnum = fromValue.invoke(null, (int)b);
+							method.invoke(listObjects, objEnum);
+						}
+					}
+				}
+			}
+		}
+	}
 }

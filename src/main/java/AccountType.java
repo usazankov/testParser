@@ -1,8 +1,7 @@
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -20,7 +19,8 @@ public class AccountType {
     private Integer accountTypeId;
     @SerializedName("EnabledOperations")
     @Expose
-    private AccountType.DefOperation enabledOperations = AccountType.DefOperation.fromValue(0);
+    @Valid
+    private List<DefOperation> enabledOperations = new ArrayList<DefOperation>();
     @SerializedName("PrefLanguages")
     @Expose
     @Valid
@@ -65,15 +65,15 @@ public class AccountType {
         return this;
     }
 
-    public AccountType.DefOperation getEnabledOperations() {
+    public List<DefOperation> getEnabledOperations() {
         return enabledOperations;
     }
 
-    public void setEnabledOperations(AccountType.DefOperation enabledOperations) {
+    public void setEnabledOperations(List<DefOperation> enabledOperations) {
         this.enabledOperations = enabledOperations;
     }
 
-    public AccountType withEnabledOperations(AccountType.DefOperation enabledOperations) {
+    public AccountType withEnabledOperations(List<DefOperation> enabledOperations) {
         this.enabledOperations = enabledOperations;
         return this;
     }
@@ -121,42 +121,6 @@ public class AccountType {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    public enum DefOperation {
-
-        @SerializedName("0")
-        TypeOper_Unknown(0),
-        @SerializedName("1")
-        TypeOper_Sale(1),
-        @SerializedName("2")
-        TypeOper_Refund(2);
-        private final Integer value;
-        private final static Map<Integer, AccountType.DefOperation> CONSTANTS = new HashMap<Integer, AccountType.DefOperation>();
-
-        static {
-            for (AccountType.DefOperation c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private DefOperation(Integer value) {
-            this.value = value;
-        }
-
-        public Integer value() {
-            return this.value;
-        }
-
-        public static AccountType.DefOperation fromValue(Integer value) {
-            AccountType.DefOperation constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException((value +""));
-            } else {
-                return constant;
-            }
-        }
-
     }
 
 }
