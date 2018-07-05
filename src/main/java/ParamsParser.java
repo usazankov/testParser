@@ -33,6 +33,9 @@ public class ParamsParser {
 		tlvFieldsRoot.put(32788,"CardProductPreset");
 		tlvFieldsRoot.put(32832,"SecurityKeyPreset");
 		tlvFieldsRoot.put(32830,"AccountTypePreset");
+		tlvFieldsRoot.put(32843, "TemplatePreset");
+		tlvFieldsRoot.put(32808, "TerminalProfilePreset");
+		
 		tlvFields = new HashMap<Integer, String>();
 		tlvFields.put(0,"Anchor");
 		
@@ -97,6 +100,80 @@ public class ParamsParser {
 		tlvFields.put(32850,"PrefLanguageItem");
 		tlvFields.put(1125,"PrefLanguage");
 		tlvFields.put(1126,"Item");
+		
+		//TemplatePreset
+		tlvFields.put(32842, "Template");
+		tlvFields.put(1128, "TemplateName");
+		tlvFields.put(1121, "TemplateType");
+		tlvFields.put(1122, "TemplateBody");
+		
+		//TerminalProfilePreset
+		tlvFields.put(32809, "TerminalProfile");
+		tlvFields.put(1027,"Name");
+		tlvFields.put(1034, "TerminalType");
+		tlvFields.put(32780, "CardProductRules");
+		tlvFields.put(32781, "CardProductRule");
+		tlvFields.put(1035, "CardProductRef");
+		tlvFields.put(1169, "CardTechnology");
+		tlvFields.put(1060, "EMVAppSelectIndicator");
+		tlvFields.put(1114, "EnabledOperations");
+		tlvFields.put(1170, "TransactionLimit");
+		tlvFields.put(1601, "TransactionLimitForRefund");
+		tlvFields.put(1435, "OnDeviceTransactionLimit");
+		tlvFields.put(1191, "FloorLimitDomestic");
+		tlvFields.put(1192, "FloorLimitInternational");
+		tlvFields.put(32888, "MagCVMs");
+		tlvFields.put(32889, "MagCVM");
+		tlvFields.put(1267, "MagCVM_Operations");
+		tlvFields.put(1258, "MagCVM_Metods");
+		tlvFields.put(1418, "MagCVMAmount");
+		tlvFields.put(32927, "ChipCVM");
+		tlvFields.put(1419, "UseChipCVM");
+		tlvFields.put(1420, "ChipCVMAmount");
+		tlvFields.put(1049, "EmvTerminalCapabilities");
+		tlvFields.put(1175, "EmvAdditionalTerminalCapabilities");
+		tlvFields.put(1045, "CvmLimit");
+		tlvFields.put(1193, "TransactionSchema");
+		tlvFields.put(1602, "CtlssMCKernelConfig");
+		tlvFields.put(1612, "CtlssMirTPMCaps");
+		tlvFields.put(1613, "CtlssMirDataExchTagList");
+		tlvFields.put(1194, "AdditionalData");
+		tlvFields.put(1200, "CvmCapability_NoCvmRequired");
+		tlvFields.put(1201, "MagStrCvmCapability_NoCvmRequired");
+		tlvFields.put(1202, "MagStrCvmCapability_CvmRequired");
+		tlvFields.put(1175, "EmvAdditionalTerminalCapabilities");
+		tlvFields.put(1195, "CtlssVisaTransactionQualifiers");
+		tlvFields.put(1521, "CtlssCupTransactionQualifiers");
+		tlvFields.put(1532, "TerminalInterchangeProfile");
+		tlvFields.put(1533, "CombinationOptions");
+		tlvFields.put(1040, "TAC_Denial");
+		tlvFields.put(1041, "TAC_Online");
+		tlvFields.put(1042, "TAC_Default");
+		tlvFields.put(1196, "CtlssMCForceMagstripe");
+		tlvFields.put(1198, "CtlssPPassMagstripeVersion");
+		tlvFields.put(1184, "SkipCheckExpDate");
+		tlvFields.put(1411, "AllowFallback");
+		tlvFields.put(1047, "VisualCheck");
+		tlvFields.put(1048, "ForceOnline");
+		tlvFields.put(1116, "MotoOperations");
+		tlvFields.put(32851, "MidleReceiptRefs");
+		tlvFields.put(1129, "TemplateRef");
+		tlvFields.put(32848, "FinalReceiptRefs");
+		tlvFields.put(32847, "ReportRefs");
+		tlvFields.put(1050, "EmvAdditionalTerminalCapabilities");
+		tlvFields.put(1052, "BypassPIN");
+		tlvFields.put(1053, "UseDirectCancel");
+		tlvFields.put(1061, "UseManualEnter");
+		tlvFields.put(1379, "UseSoundNotAproved");
+		tlvFields.put(1479, "UseSoundRemoveCard");
+		tlvFields.put(1408, "AutoReversalAlert");
+		tlvFields.put(1436, "MaxOperationsInBatch");
+		tlvFields.put(1251, "HotlinePhoneMessage");
+		tlvFields.put(1051, "UnableToGoOnlineCase");
+		tlvFields.put(1095, "EmvThresholdValue");
+		tlvFields.put(1096, "EmvTargetPercentage");
+		tlvFields.put(1097, "EmvMaximumTargetPercentage");
+		tlvFields.put(1287, "CardHolderConfirmAmount");
 		
 	}
 	
@@ -166,14 +243,33 @@ public class ParamsParser {
 							Object listObjects = field.get(rootObject);
 							List<TLVDataObj> listTLV = TLVParser.getTLVDataObjList(obj.getValue());
 							for(TLVDataObj temp: listTLV) {
-								//Рекурсивно создаем объект элемента списка
-								Object item = parseThrowing(temp.getValue(), c, false);
-								//Вызываем метод добавления элемента
-								method.invoke(listObjects, item );
+								try {
+									Object item;
+									if(c == Integer.class) {//Для обработки ссылок на другие справочники
+										byte[] array = temp.getValue();
+										item = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
+									}else {
+										//Рекурсивно создаем объект элемента списка
+										item = parseThrowing(temp.getValue(), c, false);
+									}
+									
+									//Вызываем метод добавления элемента
+									method.invoke(listObjects, item );
+								}catch(Exception ex) {
+									throw new RuntimeException("-> Ошибка при создании объекта с тэгом TagId: " + String.valueOf(obj.getTagId())+ " Имя класса: " + c.getName() + " " + ex);
+								}
 							}
+							
 						}
-					}else { //Иначе - это какой-то другой объект
-						throw new RuntimeException("Unsupported Object, error parsing on tagId: " + String.valueOf(obj.getTagId())+ " class name: " + tlvClass.getName()); 
+					}else{ //Иначе - это какой-то другой объект
+						Type type = field.getGenericType();
+						if(type instanceof Class<?>) {
+							//Рекурсивно создаем объект
+							Object item = parseThrowing(obj.getValue(), (Class<?>)type, false);
+							field.set(rootObject, item);
+						}else{
+							throw new RuntimeException("Unsupported Object, error parsing on tagId: " + String.valueOf(obj.getTagId())+ " class name: " + tlvClass.getName()); 
+						}					
 					}
 				}else {//Если не вложенный тэг - значит тип параметра 'примитивный'
 					try {
@@ -196,6 +292,7 @@ public class ParamsParser {
 	private void parsePrimitiveType(Object rootObject, Field field, TLVDataObj obj) throws IllegalArgumentException, 
 	IllegalAccessException, UnsupportedEncodingException, NoSuchMethodException, SecurityException, InvocationTargetException {
 		final Class<?> fieldType = field.getType();
+
 		byte[] array = obj.getValue();
 		if(fieldType == String.class) {
 			String value = new String(Arrays.copyOfRange(array, 1, array.length), encoding);
@@ -206,11 +303,19 @@ public class ParamsParser {
 		}else if(fieldType == Double.class) {
 			Double value = toDouble(Arrays.copyOfRange(array, 1, array.length));
 			field.set(rootObject, value);
+		}else if(fieldType == Byte.class) {
+			Byte b = Arrays.copyOfRange(array, 1, array.length)[0];
+			field.set(rootObject, b);
 		}else if(fieldType.isEnum()){
 			Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
 			Method method = fieldType.getMethod("fromValue", Integer.class);
 			Object objEnum = field.get(rootObject);
-			objEnum = method.invoke(objEnum, value);
+			try {
+				objEnum = method.invoke(objEnum, value);
+			}catch(InvocationTargetException ex) {
+				System.out.println("Перечислению " + fieldType.getName() + " присваивается неизвестное значение: "+ ex.getTargetException().getMessage()
+						+ ". Полю с тэгом "+ obj.getTagId() + " будет присвоено значение по умолчанию");
+			}
 			field.set(rootObject, objEnum);
 		}else if(fieldType == List.class){
 			Type type = field.getGenericType();
@@ -239,14 +344,21 @@ public class ParamsParser {
 						//Получаем метод добавления элемента
 						Method method = fieldType.getMethod("add", Object.class);
 						for(byte b: val){
-							Object objEnum = fromValue.invoke(null, (int)b);
-							method.invoke(listObjects, objEnum);
+							try {
+								Object objEnum = fromValue.invoke(null, (int)b);
+								method.invoke(listObjects, objEnum);
+							}catch(InvocationTargetException ex) {
+								System.out.println("Перечислению " + c.getName() + " присваивается неизвестное значение: " + ex.getTargetException().getMessage()
+								+ ". Полю с тэгом "+ obj.getTagId() + " будет присвоено значение по умолчанию");
+							}
 						}
+					}else {
+						throw new RuntimeException("Неподдерживаемый список объектов: " + " TagId:" + String.valueOf(obj.getTagId()));
 					}
 				}
 			}
 		}else{
-			System.out.println("Тип " + fieldType.toString() + " не поддерживается,"
+			System.out.println("Тип " + fieldType.toString() + " не поддерживается, "
 					+ "значение с TagID: " + obj.getTagId() + " не будет обработано" );
 		}
 	}

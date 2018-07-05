@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,10 +11,10 @@ public class PrefLanguageItem {
     private Integer anchor;
     @SerializedName("PrefLanguage")
     @Expose
-    private String prefLanguage;
+    private String prefLanguage = "";
     @SerializedName("Item")
     @Expose
-    private String item;
+    private String item = "";
 
     public Integer getAnchor() {
         return anchor;

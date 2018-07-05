@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,26 +61,6 @@ public class ParamRevocationSertificate {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.sertSerialNumber == null)? 0 :this.sertSerialNumber.hashCode()));
-        result = ((result* 31)+((this.anchor == null)? 0 :this.anchor.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof ParamRevocationSertificate) == false) {
-            return false;
-        }
-        ParamRevocationSertificate rhs = ((ParamRevocationSertificate) other);
-        return (((this.sertSerialNumber == rhs.sertSerialNumber)||((this.sertSerialNumber!= null)&&this.sertSerialNumber.equals(rhs.sertSerialNumber)))&&((this.anchor == rhs.anchor)||((this.anchor!= null)&&this.anchor.equals(rhs.anchor))));
     }
 
 }

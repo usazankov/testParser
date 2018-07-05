@@ -1,0 +1,378 @@
+{
+    "id": "TerminalProfilePreset",
+    "description": "schema for TerminalProfilePreset",
+    "type": "object",
+	
+    "properties":{
+		"TerminalProfilePreset":{
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/TerminalProfile"
+			}
+		}
+	},
+	"definitions":{
+		"TerminalProfile":{
+			"properties":{
+				"Anchor": {
+					"type": "integer"
+				},
+				"Name": {
+					"type": "string",
+					"default": ""
+				},
+				"TerminalType": {
+					"$ref": "#/definitions/ParamTerminalType" 
+				},
+				"CardProductRules": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/CardProductRule"
+					}
+				},
+				"VisualCheck": {
+					"$ref": "#/definitions/ParamVisualCheck"
+				},
+				"ForceOnline": {
+					"$ref": "DefSwitch.json"
+				},
+				"MotoOperations": {
+					"type": "array",
+					"items":{
+						"$ref": "DefOperation.json"
+					}
+				},
+				"MidleReceiptRefs": {
+					"type": "array",
+					"items":{
+						"$ref": "#/definitions/TemplateRef"
+					}
+				},
+				"FinalReceiptRefs": {
+					"type": "array",
+					"items":{
+						"$ref": "#/definitions/TemplateRef"
+					}
+				},
+				"ReportRefs": {
+					"type": "array",
+					"items":{
+						"$ref": "#/definitions/TemplateRef"
+					}
+				},
+				"EmvTerminalCapabilities": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CvmCapability_NoCvmRequired":{
+					"javaType" : "java.lang.Byte",
+					"type" : "object"
+				},
+				"EmvAdditionalTerminalCapabilities":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"BypassPIN": {
+					"$ref": "DefSwitch.json"
+				},
+				"UseDirectCancel": {
+					"$ref": "DefSwitch.json"
+				},
+				"UseManualEnter": {
+					"$ref": "DefSwitch.json"
+				},
+				"UseSoundNotAproved": {
+					"$ref": "DefSwitch.json"
+				},
+				"UseSoundRemoveCard": {
+					"$ref": "DefSwitch.json"
+				},
+				"AutoReversalAlert": {
+					"$ref": "DefSwitch.json"
+				},
+				"MaxOperationsInBatch": {
+					"type": "integer"
+				},
+				"HotlinePhoneMessage": {
+					"default": "",
+					"type": "string"
+				},
+				"UnableToGoOnlineCase": {
+					"$ref": "#/definitions/ParamUnableToGoOnlineCase"
+				},
+				"EmvThresholdValue": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"EmvTargetPercentage": {
+					"type": "integer"
+				},
+				"EmvMaximumTargetPercentage": {
+					"type": "integer"
+				},
+				"CardHolderConfirmAmount": {
+					"$ref": "DefSwitch.json"
+				}
+			}
+		},
+		"ParamTerminalType": {
+			"type": "integer",
+			"default": 0,
+			"enum": [0, 1, 2, 3, 4],
+			"javaEnumNames": [	"TerminalType_Unknown",
+								"TerminalType_POS",
+								"TerminalType_BBT",
+								"TerminalType_QUASI",
+								"TerminalType_CAT"	]
+		},
+		"CardProductRule": {
+			"type": "object",
+			"properties":{
+				"CardProductRef": {
+					"type": "integer"
+				},
+				"CardTechnology": {
+					"$ref": "DefCardTechnology.json"
+				},
+				"EMVAppSelectIndicator": {
+					"$ref": "DefSwitch.json"
+				},
+				"EnabledOperations": {
+					"type": "array",
+					"items":{
+						"$ref": "DefOperation.json"
+					}
+				},
+				"TransactionLimit": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"TransactionLimitForRefund": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"OnDeviceTransactionLimit": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"FloorLimitDomestic": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"FloorLimitInternational": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"MagCVMs": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/MagCVM"
+					}
+				},
+				"ChipCVM": {
+					"type": "object",
+					"properties":{
+						"UseChipCVM":{
+							"$ref": "DefSwitch.json"
+						},
+						"ChipCVMAmount": {
+							"javaType" : "java.math.BigInteger",
+							"type" : "object"
+						},
+						"EmvTerminalCapabilities": {
+							"type": "array",
+							"items":{
+								"javaType" : "java.lang.Byte",
+								"type" : "object"
+							}
+						},
+						"EmvAdditionalTerminalCapabilities":{
+							"type": "array",
+							"items":{
+								"javaType" : "java.lang.Byte",
+								"type" : "object"
+							}
+						}
+					}
+				},
+				"CvmLimit":{
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				},
+				"TransactionSchema":{
+					"javaType" : "java.lang.Byte",
+					"type" : "object"
+				},
+				"CtlssMCKernelConfig":{
+					"javaType" : "java.lang.Byte",
+					"type" : "object"
+				},
+				"CtlssMirTPMCaps":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CtlssMirDataExchTagList":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"AdditionalData":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"EmvTerminalCapabilities":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CvmCapability_NoCvmRequired":{
+					"javaType" : "java.lang.Byte",
+					"type" : "object"
+				},
+				"MagStrCvmCapability_NoCvmRequired": {
+					"$ref": "DefMagStrCvmCap.json"
+				},
+				"MagStrCvmCapability_CvmRequired": {
+					"$ref": "DefMagStrCvmCap.json"
+				},
+				"EmvAdditionalTerminalCapabilities": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CtlssVisaTransactionQualifiers": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CtlssCupTransactionQualifiers": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"TerminalInterchangeProfile": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CombinationOptions": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"TAC_Denial": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"TAC_Online": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"TAC_Default": {
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"CtlssMCForceMagstripe":{
+					"$ref": "DefSwitch.json"
+				},
+				"CtlssPPassMagstripeVersion":{
+					"type": "array",
+					"items":{
+						"javaType" : "java.lang.Byte",
+						"type" : "object"
+					}
+				},
+				"SkipCheckExpDate": {
+					"$ref": "DefSwitch.json"
+				},
+				"AllowFallback": {
+					"$ref": "DefSwitch.json"
+				}
+			}
+		},
+		"MagCVM": {
+		"type": "object",
+		"properties":{
+				"Anchor": {
+						"type": "integer"
+				},
+				"MagCVM_Operations": {
+					"type": "array",
+					"items":{
+						"$ref": "DefOperation.json"
+					}
+				},
+				"MagCVM_Metods": {
+					"$ref": "#/definitions/ParamMagCVM_Metods"
+				},
+				"MagCVMAmount": {
+					"javaType" : "java.math.BigInteger",
+					"type" : "object"
+				}
+			}
+		},
+		"ParamMagCVM_Metods": {
+			"type": "integer",
+			"default": 0,
+			"enum": [0, 1, 2, 3, 4, 5, 6, 7],
+			"javaEnumNames": [	"MagCVM_Unknown",
+								"MagCVM_ServiceCode",
+								"MagCVM_PinOrSign",
+								"MagCVM_Pin",
+								"MagCVM_Sign",
+								"MagCVM_No",
+								"MagCVM_PinByCashier",
+								"MagCVM_TotalIds"	]
+		},
+		"ParamVisualCheck": {
+			"type": "integer",
+			"default": 0,
+			"enum": [0, 1],
+			"javaEnumNames": ["VisualCheck_4_Last_Digits", "VisualCheck_Disabled"]
+		},
+		"TemplateRef": {
+			"type": "integer"
+		},
+		"ParamUnableToGoOnlineCase": {
+			"type": "integer",
+			"default": 0,
+			"enum": [0, 1, 2],
+			"javaEnumNames": ["UnableToGoOnline_ApproveDisabled", "UnableToGoOnline_MenuCase", "UnableToGoOnline_Standart"]
+		}
+	}
+}

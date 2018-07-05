@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class EmvCAPK {
     private List<Byte> checkValue = new ArrayList<Byte>();
     @SerializedName("ExpiryDate")
     @Expose
-    private String expiryDate;
+    private String expiryDate = "";
     @SerializedName("RevocationSertificates")
     @Expose
     @Valid
@@ -185,32 +186,6 @@ public class EmvCAPK {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.expiryDate == null)? 0 :this.expiryDate.hashCode()));
-        result = ((result* 31)+((this.anchor == null)? 0 :this.anchor.hashCode()));
-        result = ((result* 31)+((this.module == null)? 0 :this.module.hashCode()));
-        result = ((result* 31)+((this.length == null)? 0 :this.length.hashCode()));
-        result = ((result* 31)+((this.index == null)? 0 :this.index.hashCode()));
-        result = ((result* 31)+((this.revocationSertificates == null)? 0 :this.revocationSertificates.hashCode()));
-        result = ((result* 31)+((this.checkValue == null)? 0 :this.checkValue.hashCode()));
-        result = ((result* 31)+((this.exponent == null)? 0 :this.exponent.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof EmvCAPK) == false) {
-            return false;
-        }
-        EmvCAPK rhs = ((EmvCAPK) other);
-        return (((((((((this.expiryDate == rhs.expiryDate)||((this.expiryDate!= null)&&this.expiryDate.equals(rhs.expiryDate)))&&((this.anchor == rhs.anchor)||((this.anchor!= null)&&this.anchor.equals(rhs.anchor))))&&((this.module == rhs.module)||((this.module!= null)&&this.module.equals(rhs.module))))&&((this.length == rhs.length)||((this.length!= null)&&this.length.equals(rhs.length))))&&((this.index == rhs.index)||((this.index!= null)&&this.index.equals(rhs.index))))&&((this.revocationSertificates == rhs.revocationSertificates)||((this.revocationSertificates!= null)&&this.revocationSertificates.equals(rhs.revocationSertificates))))&&((this.checkValue == rhs.checkValue)||((this.checkValue!= null)&&this.checkValue.equals(rhs.checkValue))))&&((this.exponent == rhs.exponent)||((this.exponent!= null)&&this.exponent.equals(rhs.exponent))));
     }
 
     public enum ParamExponentType {

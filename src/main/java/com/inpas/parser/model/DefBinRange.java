@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +13,7 @@ public class DefBinRange {
 
     @SerializedName("Name")
     @Expose
-    private String name;
+    private String name = "";
     @SerializedName("PanLengthStart")
     @Expose
     private Integer panLengthStart;
@@ -21,10 +22,10 @@ public class DefBinRange {
     private Integer panLengthFinish;
     @SerializedName("FromBin")
     @Expose
-    private String fromBin;
+    private String fromBin = "";
     @SerializedName("ToBin")
     @Expose
-    private String toBin;
+    private String toBin = "";
 
     public String getName() {
         return name;

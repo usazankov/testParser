@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +14,16 @@ public class Currency {
     private Integer anchor;
     @SerializedName("Name")
     @Expose
-    private String name;
+    private String name = "";
     @SerializedName("NumericCode")
     @Expose
-    private String numericCode;
+    private String numericCode = "";
     @SerializedName("AlphabeticCode")
     @Expose
-    private String alphabeticCode;
+    private String alphabeticCode = "";
     @SerializedName("MinorUnit")
     @Expose
-    private String minorUnit;
+    private String minorUnit = "";
     @SerializedName("ConversionFactor")
     @Expose
     private Double conversionFactor;

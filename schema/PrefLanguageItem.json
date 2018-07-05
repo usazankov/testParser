@@ -6,10 +6,12 @@
 			"type": "integer"
 		},
 		"PrefLanguage":{
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"Item":{
-			"type": "string"
+			"type": "string",
+			"default": ""
 		}
 	}
 	

@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class PaymentSystem {
     private Integer anchor;
     @SerializedName("PName")
     @Expose
-    private String pName;
+    private String pName = "";
     @SerializedName("Name")
     @Expose
     private DefPaymentSystem name = DefPaymentSystem.fromValue(0);
@@ -22,7 +23,7 @@ public class PaymentSystem {
     private DefPaymentSystem nameQ = DefPaymentSystem.fromValue(0);
     @SerializedName("HotListPath")
     @Expose
-    private String hotListPath;
+    private String hotListPath = "";
     @SerializedName("RID")
     @Expose
     @Valid
@@ -41,7 +42,7 @@ public class PaymentSystem {
     private List<EmvCAPK> emvCAPKs = new ArrayList<EmvCAPK>();
     @SerializedName("ReferralCallCenter")
     @Expose
-    private String referralCallCenter;
+    private String referralCallCenter = "";
 
     public Integer getAnchor() {
         return anchor;
@@ -223,34 +224,6 @@ public class PaymentSystem {
             sb.append(']');
         }
         return sb.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = ((result* 31)+((this.hotListPath == null)? 0 :this.hotListPath.hashCode()));
-        result = ((result* 31)+((this.emvTDOL == null)? 0 :this.emvTDOL.hashCode()));
-        result = ((result* 31)+((this.referralCallCenter == null)? 0 :this.referralCallCenter.hashCode()));
-        result = ((result* 31)+((this.pName == null)? 0 :this.pName.hashCode()));
-        result = ((result* 31)+((this.emvCAPKs == null)? 0 :this.emvCAPKs.hashCode()));
-        result = ((result* 31)+((this.anchor == null)? 0 :this.anchor.hashCode()));
-        result = ((result* 31)+((this.name == null)? 0 :this.name.hashCode()));
-        result = ((result* 31)+((this.rID == null)? 0 :this.rID.hashCode()));
-        result = ((result* 31)+((this.nameQ == null)? 0 :this.nameQ.hashCode()));
-        result = ((result* 31)+((this.emvDDOL == null)? 0 :this.emvDDOL.hashCode()));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if ((other instanceof PaymentSystem) == false) {
-            return false;
-        }
-        PaymentSystem rhs = ((PaymentSystem) other);
-        return (((((((((((this.hotListPath == rhs.hotListPath)||((this.hotListPath!= null)&&this.hotListPath.equals(rhs.hotListPath)))&&((this.emvTDOL == rhs.emvTDOL)||((this.emvTDOL!= null)&&this.emvTDOL.equals(rhs.emvTDOL))))&&((this.referralCallCenter == rhs.referralCallCenter)||((this.referralCallCenter!= null)&&this.referralCallCenter.equals(rhs.referralCallCenter))))&&((this.pName == rhs.pName)||((this.pName!= null)&&this.pName.equals(rhs.pName))))&&((this.emvCAPKs == rhs.emvCAPKs)||((this.emvCAPKs!= null)&&this.emvCAPKs.equals(rhs.emvCAPKs))))&&((this.anchor == rhs.anchor)||((this.anchor!= null)&&this.anchor.equals(rhs.anchor))))&&((this.name == rhs.name)||((this.name!= null)&&this.name.equals(rhs.name))))&&((this.rID == rhs.rID)||((this.rID!= null)&&this.rID.equals(rhs.rID))))&&((this.nameQ == rhs.nameQ)||((this.nameQ!= null)&&this.nameQ.equals(rhs.nameQ))))&&((this.emvDDOL == rhs.emvDDOL)||((this.emvDDOL!= null)&&this.emvDDOL.equals(rhs.emvDDOL))));
     }
 
 }

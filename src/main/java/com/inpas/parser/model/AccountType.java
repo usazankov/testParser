@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class AccountType {
     private Integer anchor;
     @SerializedName("AccountTypeName")
     @Expose
-    private String accountTypeName;
+    private String accountTypeName = "";
     @SerializedName("AccountTypeId")
     @Expose
     private Integer accountTypeId;

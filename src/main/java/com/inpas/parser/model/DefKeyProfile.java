@@ -1,4 +1,5 @@
 
+package com.inpas.parser.model;
 
 import java.util.HashMap;
 import java.util.Map;

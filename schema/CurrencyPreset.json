@@ -18,16 +18,20 @@
 					"type": "integer"
 				},
 				"Name": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"NumericCode": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"AlphabeticCode": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"MinorUnit": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"ConversionFactor": {
 					"type": "number"

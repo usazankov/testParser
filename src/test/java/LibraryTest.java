@@ -3,17 +3,15 @@
  */
 import org.junit.Test;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.inpas.parser.model.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
@@ -40,11 +38,15 @@ public class LibraryTest {
 	    Path path3 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Card.pst");
 	    Path path4 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Keys.pst");
 	    Path path5 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Account.pst");
+	    Path path6 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Template.pst");
+	    Path path7 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Profile.pst");
 	    byte[] data = Files.readAllBytes(path);
 	    byte[] data2 = Files.readAllBytes(path2);
 	    byte[] data3 = Files.readAllBytes(path3);
 	    byte[] data4 = Files.readAllBytes(path4);
 	    byte[] data5 = Files.readAllBytes(path5);
+	    byte[] data6 = Files.readAllBytes(path6);
+	    byte[] data7 = Files.readAllBytes(path7);
         ParamsParser parser = new ParamsParser();
         parser.init();
         try {
@@ -53,7 +55,12 @@ public class LibraryTest {
             CardProductPreset product = parser.parse(data3, CardProductPreset.class);
             SecurityKeyPreset keys = parser.parse(data4, SecurityKeyPreset.class);
             AccountTypePreset account = parser.parse(data5, AccountTypePreset.class);
-            paym.getPaymentSystemPreset();
+            
+            TemplatePreset templates = parser.parse(data6, TemplatePreset.class);
+            
+            TerminalProfilePreset profile = parser.parse(data7, TerminalProfilePreset.class);
+            String str = profile.getTerminalProfilePreset().get(0).getHotlinePhoneMessage();
+            
         }catch(Exception ex) {
         	System.out.println("Error parsing:" + ex);
         }
@@ -63,16 +70,6 @@ public class LibraryTest {
         //account.getAccountTypePreset();
        
         //preset.getCurrency().add(e)
-    }
-    class FooDeserializerFromJsonWithDifferentFields implements JsonDeserializer<PaymentSystemPreset>{
-
-		@Override
-		public PaymentSystemPreset deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-				throws JsonParseException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-    	
     }
     public static String bytesToHex(byte[] bytes) {
         final char[] hexArray = "0123456789ABCDEF".toCharArray();

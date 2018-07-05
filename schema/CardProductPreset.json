@@ -21,7 +21,8 @@
 					"$ref": "DefCardProduct.json"
 				},
 				"CPName": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"PIX": {
 					"type": "array",

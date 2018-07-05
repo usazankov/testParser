@@ -18,7 +18,8 @@
 					"type": "integer"
 				},
 				"PName": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"Name": {
 					"$ref": "DefPaymentSystem.json"
@@ -27,7 +28,8 @@
 					"$ref": "DefPaymentSystem.json"
 				},
 				"HotListPath": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"RID": {
 					"type": "array",
@@ -57,7 +59,8 @@
 					}
 				},
 				"ReferralCallCenter": {
-					"type": "string"
+					"type": "string",
+					"default": ""
 				}
 			}
 		},
@@ -92,7 +95,8 @@
 					}
 				},
 				"ExpiryDate":{
-					"type": "string"
+					"type": "string",
+					"default": ""
 				},
 				"RevocationSertificates": {
 					"type": "array",
