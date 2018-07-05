@@ -33,13 +33,14 @@ public class LibraryTest {
 	    //if (!file.exists()){
 	    //    throw new FileNotFoundException(file.getName());
 	    //}
-	    Path path = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Currency.pst");
-	    Path path2 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Paysys.pst");
-	    Path path3 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Card.pst");
-	    Path path4 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Keys.pst");
-	    Path path5 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Account.pst");
-	    Path path6 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Template.pst");
-	    Path path7 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Profile.pst");
+	    Path path = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Currency.pst");
+	    Path path2 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Paysys.pst");
+	    Path path3 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Card.pst");
+	    Path path4 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Keys.pst");
+	    Path path5 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Account.pst");
+	    Path path6 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Template.pst");
+	    Path path7 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/Profile.pst");
+	    Path path8 = Paths.get("C:/git/My/JavaProjects/TLV_Parser/tlv/UsersGroups.pst");
 	    byte[] data = Files.readAllBytes(path);
 	    byte[] data2 = Files.readAllBytes(path2);
 	    byte[] data3 = Files.readAllBytes(path3);
@@ -47,6 +48,7 @@ public class LibraryTest {
 	    byte[] data5 = Files.readAllBytes(path5);
 	    byte[] data6 = Files.readAllBytes(path6);
 	    byte[] data7 = Files.readAllBytes(path7);
+	    byte[] data8 = Files.readAllBytes(path8);
         ParamsParser parser = new ParamsParser();
         parser.init();
         try {
@@ -55,10 +57,9 @@ public class LibraryTest {
             CardProductPreset product = parser.parse(data3, CardProductPreset.class);
             SecurityKeyPreset keys = parser.parse(data4, SecurityKeyPreset.class);
             AccountTypePreset account = parser.parse(data5, AccountTypePreset.class);
-            
             TemplatePreset templates = parser.parse(data6, TemplatePreset.class);
-            
             TerminalProfilePreset profile = parser.parse(data7, TerminalProfilePreset.class);
+            UsersGroupPreset users = parser.parse(data8, UsersGroupPreset.class);
             String str = profile.getTerminalProfilePreset().get(0).getHotlinePhoneMessage();
             
         }catch(Exception ex) {
