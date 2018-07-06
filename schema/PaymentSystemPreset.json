@@ -32,11 +32,8 @@
 					"default": ""
 				},
 				"RID": {
-					"type": "array",
-					"items":{
-						"type": "object",
-						"javaType" : "com.inpas.type.HexString"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"EmvTDOL": {
 					"type": "object",

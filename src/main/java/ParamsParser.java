@@ -37,6 +37,7 @@ public class ParamsParser {
 		tlvFieldsRoot.put(32843, "TemplatePreset");
 		tlvFieldsRoot.put(32808, "TerminalProfilePreset");
 		tlvFieldsRoot.put(32897, "UsersGroupPreset");
+		tlvFieldsRoot.put(32807, "PossessorPreset");
 		
 		tlvFields = new HashMap<Integer, String>();
 		tlvFields.put(0,"Anchor");
@@ -184,6 +185,40 @@ public class ParamsParser {
 		tlvFields.put(1097, "EmvMaximumTargetPercentage");
 		tlvFields.put(1287, "CardHolderConfirmAmount");
 		
+		//PossessorPreset
+		tlvFields.put(32806, "Possessor");
+		tlvFields.put(1030, "MCC");
+		tlvFields.put(1031, "PossessorType");
+		tlvFields.put(1130, "EmvMerchantNameLocation");
+		tlvFields.put(32804, "PaymentSystemRegistrations");
+		tlvFields.put(32802, "PaymentSystemRegistration");
+		tlvFields.put(1032, "MerchantId");
+		tlvFields.put(1013, "PaymentSystemRef");
+		tlvFields.put(32840, "CurrencyRefs");
+		tlvFields.put(1014, "CurrencyRef");
+		tlvFields.put(1337, "GoodsProfileRefs");
+		tlvFields.put(32901, "UsersPreset");
+		tlvFields.put(32902, "UsersPresetRegistration");
+		tlvFields.put(1307, "UserName");
+		tlvFields.put(1308, "UserPassword");
+		tlvFields.put(1309, "UserGroupRef");
+		tlvFields.put(1033, "SelectLanguageDialog");
+		tlvFields.put(1414, "InputAdditionalDataForSale");
+		tlvFields.put(1415, "AdditionalDataDisplayName");
+		tlvFields.put(1416, "AdditionalDataUsage");
+		tlvFields.put(1351, "PicturesGroupTypeSelectedPossessor");
+		tlvFields.put(1352, "PicturesGroupSelectedPossessor");
+		tlvFields.put(1368, "PrintGroupTypeSelectedPossessor");
+		tlvFields.put(1369, "PrintGroupSelectedPossessor");
+		tlvFields.put(1371, "PrintPictureName");
+		tlvFields.put(1372, "PrintPictureFileName");
+		tlvFields.put(32853, "GluedReports");
+		tlvFields.put(1270, "ReconciliationReport");
+		tlvFields.put(1271, "ReconciliationReportFail");
+		tlvFields.put(32847, "ReportRefs");
+		tlvFields.put(1168, "Logo");
+		tlvFields.put(1287, "CardHolderConfirmAmount");
+		tlvFields.put(1287, "CardHolderConfirmAmount");
 	}
 	
 	public int byteArrayToInt(byte[] b) 
@@ -226,7 +261,7 @@ public class ParamsParser {
 			else nameClass = tlvFields.get(obj.getTagId());
 			if(nameClass == null) {
 				System.out.println("In HashTable of TagId-ClassName  there is no field of the corresponding tagId: " 
-			+ obj.getTagId() + " Current parsing class: "+ tlvClass.getName());
+			+ obj.getTagId() + ". Current parsing class: "+ tlvClass.getName());
 			}
 			//Проверяем, есть ли такое имя класса в раннее определенной таблице: имя аннотации - поле
 			if(hashMap.containsKey(nameClass)) {
@@ -364,7 +399,7 @@ public class ParamsParser {
 								method.invoke(listObjects, objEnum);
 							}catch(InvocationTargetException ex) {
 								System.out.println("Перечислению " + c.getName() + " присваивается неизвестное значение: " + ex.getTargetException().getMessage()
-								+ ". Полю с тэгом "+ obj.getTagId() + " будет присвоено значение по умолчанию");
+								+ ". Полю с тэгом "+ obj.getTagId() + " будет присвоено значение по умолчанию. Обрабатываемый объект: " + field.getName() + " класса " + rootObject.getClass().getName());
 							}
 						}
 					}else {
@@ -391,7 +426,9 @@ public class ParamsParser {
 					}else if(fieldType == HexString.class) {
 						obj = new HexString();
 					}
-					field.set(rootObject, obj);
+					if(obj != null) {
+						field.set(rootObject, obj);
+					}
 				}
 			}
 		}

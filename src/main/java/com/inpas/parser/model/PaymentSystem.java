@@ -28,7 +28,7 @@ public class PaymentSystem {
     @SerializedName("RID")
     @Expose
     @Valid
-    private List<HexString> rID = new ArrayList<HexString>();
+    private HexString rID;
     @SerializedName("EmvTDOL")
     @Expose
     @Valid
@@ -110,15 +110,15 @@ public class PaymentSystem {
         return this;
     }
 
-    public List<HexString> getRID() {
+    public HexString getRID() {
         return rID;
     }
 
-    public void setRID(List<HexString> rID) {
+    public void setRID(HexString rID) {
         this.rID = rID;
     }
 
-    public PaymentSystem withRID(List<HexString> rID) {
+    public PaymentSystem withRID(HexString rID) {
         this.rID = rID;
         return this;
     }
