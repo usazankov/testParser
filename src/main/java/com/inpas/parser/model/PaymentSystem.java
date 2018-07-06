@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class PaymentSystem {
 
@@ -27,15 +28,15 @@ public class PaymentSystem {
     @SerializedName("RID")
     @Expose
     @Valid
-    private List<Byte> rID = new ArrayList<Byte>();
+    private List<HexString> rID = new ArrayList<HexString>();
     @SerializedName("EmvTDOL")
     @Expose
     @Valid
-    private List<Byte> emvTDOL = new ArrayList<Byte>();
+    private HexString emvTDOL;
     @SerializedName("EmvDDOL")
     @Expose
     @Valid
-    private List<Byte> emvDDOL = new ArrayList<Byte>();
+    private HexString emvDDOL;
     @SerializedName("EmvCAPKs")
     @Expose
     @Valid
@@ -109,41 +110,41 @@ public class PaymentSystem {
         return this;
     }
 
-    public List<Byte> getRID() {
+    public List<HexString> getRID() {
         return rID;
     }
 
-    public void setRID(List<Byte> rID) {
+    public void setRID(List<HexString> rID) {
         this.rID = rID;
     }
 
-    public PaymentSystem withRID(List<Byte> rID) {
+    public PaymentSystem withRID(List<HexString> rID) {
         this.rID = rID;
         return this;
     }
 
-    public List<Byte> getEmvTDOL() {
+    public HexString getEmvTDOL() {
         return emvTDOL;
     }
 
-    public void setEmvTDOL(List<Byte> emvTDOL) {
+    public void setEmvTDOL(HexString emvTDOL) {
         this.emvTDOL = emvTDOL;
     }
 
-    public PaymentSystem withEmvTDOL(List<Byte> emvTDOL) {
+    public PaymentSystem withEmvTDOL(HexString emvTDOL) {
         this.emvTDOL = emvTDOL;
         return this;
     }
 
-    public List<Byte> getEmvDDOL() {
+    public HexString getEmvDDOL() {
         return emvDDOL;
     }
 
-    public void setEmvDDOL(List<Byte> emvDDOL) {
+    public void setEmvDDOL(HexString emvDDOL) {
         this.emvDDOL = emvDDOL;
     }
 
-    public PaymentSystem withEmvDDOL(List<Byte> emvDDOL) {
+    public PaymentSystem withEmvDDOL(HexString emvDDOL) {
         this.emvDDOL = emvDDOL;
         return this;
     }

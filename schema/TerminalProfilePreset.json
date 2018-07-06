@@ -61,22 +61,16 @@
 					}
 				},
 				"EmvTerminalCapabilities": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CvmCapability_NoCvmRequired":{
-					"javaType" : "java.lang.Byte",
+					"javaType" : "com.inpas.type.HexString",
 					"type" : "object"
 				},
 				"EmvAdditionalTerminalCapabilities":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"BypassPIN": {
 					"$ref": "DefSwitch.json"
@@ -186,18 +180,12 @@
 							"type" : "object"
 						},
 						"EmvTerminalCapabilities": {
-							"type": "array",
-							"items":{
-								"javaType" : "java.lang.Byte",
-								"type" : "object"
-							}
+							"type": "object",
+							"javaType" : "com.inpas.type.HexString"
 						},
 						"EmvAdditionalTerminalCapabilities":{
-							"type": "array",
-							"items":{
-								"javaType" : "java.lang.Byte",
-								"type" : "object"
-							}
+							"type": "object",
+							"javaType" : "com.inpas.type.HexString"
 						}
 					}
 				},
@@ -206,44 +194,33 @@
 					"type" : "object"
 				},
 				"TransactionSchema":{
-					"javaType" : "java.lang.Byte",
-					"type" : "object"
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString",
+					"default" : ""
 				},
 				"CtlssMCKernelConfig":{
-					"javaType" : "java.lang.Byte",
-					"type" : "object"
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CtlssMirTPMCaps":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CtlssMirDataExchTagList":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"AdditionalData":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"EmvTerminalCapabilities":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CvmCapability_NoCvmRequired":{
-					"javaType" : "java.lang.Byte",
-					"type" : "object"
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"MagStrCvmCapability_NoCvmRequired": {
 					"$ref": "DefMagStrCvmCap.json"
@@ -252,70 +229,43 @@
 					"$ref": "DefMagStrCvmCap.json"
 				},
 				"EmvAdditionalTerminalCapabilities": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CtlssVisaTransactionQualifiers": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CtlssCupTransactionQualifiers": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"TerminalInterchangeProfile": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CombinationOptions": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"TAC_Denial": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"TAC_Online": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"TAC_Default": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CtlssMCForceMagstripe":{
 					"$ref": "DefSwitch.json"
 				},
 				"CtlssPPassMagstripeVersion":{
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"SkipCheckExpDate": {
 					"$ref": "DefSwitch.json"

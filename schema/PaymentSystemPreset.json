@@ -34,23 +34,17 @@
 				"RID": {
 					"type": "array",
 					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
+						"type": "object",
+						"javaType" : "com.inpas.type.HexString"
 					}
 				},
 				"EmvTDOL": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"EmvDDOL": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"EmvCAPKs":{
 					"type": "array",
@@ -71,8 +65,8 @@
 					"type": "integer"
 				},
 				"Index": {
-					"javaType" : "java.lang.Byte",
-					"type" : "object"
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"Length": {
 					"type" : "integer"
@@ -81,18 +75,12 @@
 					"$ref": "#/definitions/ParamExponentType" 
 				},
 				"Module": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"CheckValue": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"ExpiryDate":{
 					"type": "string",
@@ -119,11 +107,8 @@
 					"type": "integer"
 				},
 				"SertSerialNumber": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				}
 			}
 		}

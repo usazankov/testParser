@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class CardProduct {
 
@@ -21,7 +22,7 @@ public class CardProduct {
     @SerializedName("PIX")
     @Expose
     @Valid
-    private List<Byte> pIX = new ArrayList<Byte>();
+    private HexString pIX;
     @SerializedName("BinRanges")
     @Expose
     @Valid
@@ -69,15 +70,15 @@ public class CardProduct {
         return this;
     }
 
-    public List<Byte> getPIX() {
+    public HexString getPIX() {
         return pIX;
     }
 
-    public void setPIX(List<Byte> pIX) {
+    public void setPIX(HexString pIX) {
         this.pIX = pIX;
     }
 
-    public CardProduct withPIX(List<Byte> pIX) {
+    public CardProduct withPIX(HexString pIX) {
         this.pIX = pIX;
         return this;
     }

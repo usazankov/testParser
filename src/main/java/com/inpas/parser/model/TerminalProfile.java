@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class TerminalProfile {
 
@@ -50,15 +51,15 @@ public class TerminalProfile {
     @SerializedName("EmvTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvTerminalCapabilities;
     @SerializedName("CvmCapability_NoCvmRequired")
     @Expose
     @Valid
-    private Byte cvmCapability_NoCvmRequired;
+    private HexString cvmCapability_NoCvmRequired;
     @SerializedName("EmvAdditionalTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvAdditionalTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvAdditionalTerminalCapabilities;
     @SerializedName("BypassPIN")
     @Expose
     private DefSwitch bypassPIN = DefSwitch.fromValue(0);
@@ -230,41 +231,41 @@ public class TerminalProfile {
         return this;
     }
 
-    public List<Byte> getEmvTerminalCapabilities() {
+    public HexString getEmvTerminalCapabilities() {
         return emvTerminalCapabilities;
     }
 
-    public void setEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public void setEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
     }
 
-    public TerminalProfile withEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public TerminalProfile withEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
         return this;
     }
 
-    public Byte getCvmCapability_NoCvmRequired() {
+    public HexString getCvmCapability_NoCvmRequired() {
         return cvmCapability_NoCvmRequired;
     }
 
-    public void setCvmCapability_NoCvmRequired(Byte cvmCapability_NoCvmRequired) {
+    public void setCvmCapability_NoCvmRequired(HexString cvmCapability_NoCvmRequired) {
         this.cvmCapability_NoCvmRequired = cvmCapability_NoCvmRequired;
     }
 
-    public TerminalProfile withCvmCapability_NoCvmRequired(Byte cvmCapability_NoCvmRequired) {
+    public TerminalProfile withCvmCapability_NoCvmRequired(HexString cvmCapability_NoCvmRequired) {
         this.cvmCapability_NoCvmRequired = cvmCapability_NoCvmRequired;
         return this;
     }
 
-    public List<Byte> getEmvAdditionalTerminalCapabilities() {
+    public HexString getEmvAdditionalTerminalCapabilities() {
         return emvAdditionalTerminalCapabilities;
     }
 
-    public void setEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public void setEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
     }
 
-    public TerminalProfile withEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public TerminalProfile withEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
         return this;
     }

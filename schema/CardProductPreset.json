@@ -25,11 +25,8 @@
 					"default": ""
 				},
 				"PIX": {
-					"type": "array",
-					"items":{
-						"javaType" : "java.lang.Byte",
-						"type" : "object"
-					}
+					"type": "object",
+					"javaType" : "com.inpas.type.HexString"
 				},
 				"BinRanges": {
 					"type": "array",

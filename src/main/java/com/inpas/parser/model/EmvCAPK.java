@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class EmvCAPK {
 
@@ -17,7 +18,7 @@ public class EmvCAPK {
     @SerializedName("Index")
     @Expose
     @Valid
-    private Byte index;
+    private HexString index;
     @SerializedName("Length")
     @Expose
     private Integer length;
@@ -27,11 +28,11 @@ public class EmvCAPK {
     @SerializedName("Module")
     @Expose
     @Valid
-    private List<Byte> module = new ArrayList<Byte>();
+    private HexString module;
     @SerializedName("CheckValue")
     @Expose
     @Valid
-    private List<Byte> checkValue = new ArrayList<Byte>();
+    private HexString checkValue;
     @SerializedName("ExpiryDate")
     @Expose
     private String expiryDate = "";
@@ -53,15 +54,15 @@ public class EmvCAPK {
         return this;
     }
 
-    public Byte getIndex() {
+    public HexString getIndex() {
         return index;
     }
 
-    public void setIndex(Byte index) {
+    public void setIndex(HexString index) {
         this.index = index;
     }
 
-    public EmvCAPK withIndex(Byte index) {
+    public EmvCAPK withIndex(HexString index) {
         this.index = index;
         return this;
     }
@@ -92,28 +93,28 @@ public class EmvCAPK {
         return this;
     }
 
-    public List<Byte> getModule() {
+    public HexString getModule() {
         return module;
     }
 
-    public void setModule(List<Byte> module) {
+    public void setModule(HexString module) {
         this.module = module;
     }
 
-    public EmvCAPK withModule(List<Byte> module) {
+    public EmvCAPK withModule(HexString module) {
         this.module = module;
         return this;
     }
 
-    public List<Byte> getCheckValue() {
+    public HexString getCheckValue() {
         return checkValue;
     }
 
-    public void setCheckValue(List<Byte> checkValue) {
+    public void setCheckValue(HexString checkValue) {
         this.checkValue = checkValue;
     }
 
-    public EmvCAPK withCheckValue(List<Byte> checkValue) {
+    public EmvCAPK withCheckValue(HexString checkValue) {
         this.checkValue = checkValue;
         return this;
     }

@@ -2,11 +2,10 @@
 package com.inpas.parser.model;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class ChipCVM {
 
@@ -20,11 +19,11 @@ public class ChipCVM {
     @SerializedName("EmvTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvTerminalCapabilities;
     @SerializedName("EmvAdditionalTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvAdditionalTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvAdditionalTerminalCapabilities;
 
     public DefSwitch getUseChipCVM() {
         return useChipCVM;
@@ -52,28 +51,28 @@ public class ChipCVM {
         return this;
     }
 
-    public List<Byte> getEmvTerminalCapabilities() {
+    public HexString getEmvTerminalCapabilities() {
         return emvTerminalCapabilities;
     }
 
-    public void setEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public void setEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
     }
 
-    public ChipCVM withEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public ChipCVM withEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
         return this;
     }
 
-    public List<Byte> getEmvAdditionalTerminalCapabilities() {
+    public HexString getEmvAdditionalTerminalCapabilities() {
         return emvAdditionalTerminalCapabilities;
     }
 
-    public void setEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public void setEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
     }
 
-    public ChipCVM withEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public ChipCVM withEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
         return this;
     }

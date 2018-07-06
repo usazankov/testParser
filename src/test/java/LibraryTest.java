@@ -27,7 +27,7 @@ public class LibraryTest {
     @Test public void testSomeLibraryMethod() throws IOException {
 
         StringBuilder sb = new StringBuilder();
-
+        
         //File file = new File("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Currency.pst");
         System.out.println("Hi!");
 	    //if (!file.exists()){

@@ -1,11 +1,10 @@
 
 package com.inpas.parser.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class ParamRevocationSertificate {
 
@@ -15,7 +14,7 @@ public class ParamRevocationSertificate {
     @SerializedName("SertSerialNumber")
     @Expose
     @Valid
-    private List<Byte> sertSerialNumber = new ArrayList<Byte>();
+    private HexString sertSerialNumber;
 
     public Integer getAnchor() {
         return anchor;
@@ -30,15 +29,15 @@ public class ParamRevocationSertificate {
         return this;
     }
 
-    public List<Byte> getSertSerialNumber() {
+    public HexString getSertSerialNumber() {
         return sertSerialNumber;
     }
 
-    public void setSertSerialNumber(List<Byte> sertSerialNumber) {
+    public void setSertSerialNumber(HexString sertSerialNumber) {
         this.sertSerialNumber = sertSerialNumber;
     }
 
-    public ParamRevocationSertificate withSertSerialNumber(List<Byte> sertSerialNumber) {
+    public ParamRevocationSertificate withSertSerialNumber(HexString sertSerialNumber) {
         this.sertSerialNumber = sertSerialNumber;
         return this;
     }

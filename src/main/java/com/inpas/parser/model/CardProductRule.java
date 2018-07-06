@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.inpas.type.HexString;
 
 public class CardProductRule {
 
@@ -58,31 +59,31 @@ public class CardProductRule {
     @SerializedName("TransactionSchema")
     @Expose
     @Valid
-    private Byte transactionSchema;
+    private HexString transactionSchema;
     @SerializedName("CtlssMCKernelConfig")
     @Expose
     @Valid
-    private Byte ctlssMCKernelConfig;
+    private HexString ctlssMCKernelConfig;
     @SerializedName("CtlssMirTPMCaps")
     @Expose
     @Valid
-    private List<Byte> ctlssMirTPMCaps = new ArrayList<Byte>();
+    private HexString ctlssMirTPMCaps;
     @SerializedName("CtlssMirDataExchTagList")
     @Expose
     @Valid
-    private List<Byte> ctlssMirDataExchTagList = new ArrayList<Byte>();
+    private HexString ctlssMirDataExchTagList;
     @SerializedName("AdditionalData")
     @Expose
     @Valid
-    private List<Byte> additionalData = new ArrayList<Byte>();
+    private HexString additionalData;
     @SerializedName("EmvTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvTerminalCapabilities;
     @SerializedName("CvmCapability_NoCvmRequired")
     @Expose
     @Valid
-    private Byte cvmCapability_NoCvmRequired;
+    private HexString cvmCapability_NoCvmRequired;
     @SerializedName("MagStrCvmCapability_NoCvmRequired")
     @Expose
     private DefMagStrCvmCap magStrCvmCapability_NoCvmRequired = DefMagStrCvmCap.fromValue(0);
@@ -92,42 +93,42 @@ public class CardProductRule {
     @SerializedName("EmvAdditionalTerminalCapabilities")
     @Expose
     @Valid
-    private List<Byte> emvAdditionalTerminalCapabilities = new ArrayList<Byte>();
+    private HexString emvAdditionalTerminalCapabilities;
     @SerializedName("CtlssVisaTransactionQualifiers")
     @Expose
     @Valid
-    private List<Byte> ctlssVisaTransactionQualifiers = new ArrayList<Byte>();
+    private HexString ctlssVisaTransactionQualifiers;
     @SerializedName("CtlssCupTransactionQualifiers")
     @Expose
     @Valid
-    private List<Byte> ctlssCupTransactionQualifiers = new ArrayList<Byte>();
+    private HexString ctlssCupTransactionQualifiers;
     @SerializedName("TerminalInterchangeProfile")
     @Expose
     @Valid
-    private List<Byte> terminalInterchangeProfile = new ArrayList<Byte>();
+    private HexString terminalInterchangeProfile;
     @SerializedName("CombinationOptions")
     @Expose
     @Valid
-    private List<Byte> combinationOptions = new ArrayList<Byte>();
+    private HexString combinationOptions;
     @SerializedName("TAC_Denial")
     @Expose
     @Valid
-    private List<Byte> tAC_Denial = new ArrayList<Byte>();
+    private HexString tAC_Denial;
     @SerializedName("TAC_Online")
     @Expose
     @Valid
-    private List<Byte> tAC_Online = new ArrayList<Byte>();
+    private HexString tAC_Online;
     @SerializedName("TAC_Default")
     @Expose
     @Valid
-    private List<Byte> tAC_Default = new ArrayList<Byte>();
+    private HexString tAC_Default;
     @SerializedName("CtlssMCForceMagstripe")
     @Expose
     private DefSwitch ctlssMCForceMagstripe = DefSwitch.fromValue(0);
     @SerializedName("CtlssPPassMagstripeVersion")
     @Expose
     @Valid
-    private List<Byte> ctlssPPassMagstripeVersion = new ArrayList<Byte>();
+    private HexString ctlssPPassMagstripeVersion;
     @SerializedName("SkipCheckExpDate")
     @Expose
     private DefSwitch skipCheckExpDate = DefSwitch.fromValue(0);
@@ -291,93 +292,93 @@ public class CardProductRule {
         return this;
     }
 
-    public Byte getTransactionSchema() {
+    public HexString getTransactionSchema() {
         return transactionSchema;
     }
 
-    public void setTransactionSchema(Byte transactionSchema) {
+    public void setTransactionSchema(HexString transactionSchema) {
         this.transactionSchema = transactionSchema;
     }
 
-    public CardProductRule withTransactionSchema(Byte transactionSchema) {
+    public CardProductRule withTransactionSchema(HexString transactionSchema) {
         this.transactionSchema = transactionSchema;
         return this;
     }
 
-    public Byte getCtlssMCKernelConfig() {
+    public HexString getCtlssMCKernelConfig() {
         return ctlssMCKernelConfig;
     }
 
-    public void setCtlssMCKernelConfig(Byte ctlssMCKernelConfig) {
+    public void setCtlssMCKernelConfig(HexString ctlssMCKernelConfig) {
         this.ctlssMCKernelConfig = ctlssMCKernelConfig;
     }
 
-    public CardProductRule withCtlssMCKernelConfig(Byte ctlssMCKernelConfig) {
+    public CardProductRule withCtlssMCKernelConfig(HexString ctlssMCKernelConfig) {
         this.ctlssMCKernelConfig = ctlssMCKernelConfig;
         return this;
     }
 
-    public List<Byte> getCtlssMirTPMCaps() {
+    public HexString getCtlssMirTPMCaps() {
         return ctlssMirTPMCaps;
     }
 
-    public void setCtlssMirTPMCaps(List<Byte> ctlssMirTPMCaps) {
+    public void setCtlssMirTPMCaps(HexString ctlssMirTPMCaps) {
         this.ctlssMirTPMCaps = ctlssMirTPMCaps;
     }
 
-    public CardProductRule withCtlssMirTPMCaps(List<Byte> ctlssMirTPMCaps) {
+    public CardProductRule withCtlssMirTPMCaps(HexString ctlssMirTPMCaps) {
         this.ctlssMirTPMCaps = ctlssMirTPMCaps;
         return this;
     }
 
-    public List<Byte> getCtlssMirDataExchTagList() {
+    public HexString getCtlssMirDataExchTagList() {
         return ctlssMirDataExchTagList;
     }
 
-    public void setCtlssMirDataExchTagList(List<Byte> ctlssMirDataExchTagList) {
+    public void setCtlssMirDataExchTagList(HexString ctlssMirDataExchTagList) {
         this.ctlssMirDataExchTagList = ctlssMirDataExchTagList;
     }
 
-    public CardProductRule withCtlssMirDataExchTagList(List<Byte> ctlssMirDataExchTagList) {
+    public CardProductRule withCtlssMirDataExchTagList(HexString ctlssMirDataExchTagList) {
         this.ctlssMirDataExchTagList = ctlssMirDataExchTagList;
         return this;
     }
 
-    public List<Byte> getAdditionalData() {
+    public HexString getAdditionalData() {
         return additionalData;
     }
 
-    public void setAdditionalData(List<Byte> additionalData) {
+    public void setAdditionalData(HexString additionalData) {
         this.additionalData = additionalData;
     }
 
-    public CardProductRule withAdditionalData(List<Byte> additionalData) {
+    public CardProductRule withAdditionalData(HexString additionalData) {
         this.additionalData = additionalData;
         return this;
     }
 
-    public List<Byte> getEmvTerminalCapabilities() {
+    public HexString getEmvTerminalCapabilities() {
         return emvTerminalCapabilities;
     }
 
-    public void setEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public void setEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
     }
 
-    public CardProductRule withEmvTerminalCapabilities(List<Byte> emvTerminalCapabilities) {
+    public CardProductRule withEmvTerminalCapabilities(HexString emvTerminalCapabilities) {
         this.emvTerminalCapabilities = emvTerminalCapabilities;
         return this;
     }
 
-    public Byte getCvmCapability_NoCvmRequired() {
+    public HexString getCvmCapability_NoCvmRequired() {
         return cvmCapability_NoCvmRequired;
     }
 
-    public void setCvmCapability_NoCvmRequired(Byte cvmCapability_NoCvmRequired) {
+    public void setCvmCapability_NoCvmRequired(HexString cvmCapability_NoCvmRequired) {
         this.cvmCapability_NoCvmRequired = cvmCapability_NoCvmRequired;
     }
 
-    public CardProductRule withCvmCapability_NoCvmRequired(Byte cvmCapability_NoCvmRequired) {
+    public CardProductRule withCvmCapability_NoCvmRequired(HexString cvmCapability_NoCvmRequired) {
         this.cvmCapability_NoCvmRequired = cvmCapability_NoCvmRequired;
         return this;
     }
@@ -408,106 +409,106 @@ public class CardProductRule {
         return this;
     }
 
-    public List<Byte> getEmvAdditionalTerminalCapabilities() {
+    public HexString getEmvAdditionalTerminalCapabilities() {
         return emvAdditionalTerminalCapabilities;
     }
 
-    public void setEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public void setEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
     }
 
-    public CardProductRule withEmvAdditionalTerminalCapabilities(List<Byte> emvAdditionalTerminalCapabilities) {
+    public CardProductRule withEmvAdditionalTerminalCapabilities(HexString emvAdditionalTerminalCapabilities) {
         this.emvAdditionalTerminalCapabilities = emvAdditionalTerminalCapabilities;
         return this;
     }
 
-    public List<Byte> getCtlssVisaTransactionQualifiers() {
+    public HexString getCtlssVisaTransactionQualifiers() {
         return ctlssVisaTransactionQualifiers;
     }
 
-    public void setCtlssVisaTransactionQualifiers(List<Byte> ctlssVisaTransactionQualifiers) {
+    public void setCtlssVisaTransactionQualifiers(HexString ctlssVisaTransactionQualifiers) {
         this.ctlssVisaTransactionQualifiers = ctlssVisaTransactionQualifiers;
     }
 
-    public CardProductRule withCtlssVisaTransactionQualifiers(List<Byte> ctlssVisaTransactionQualifiers) {
+    public CardProductRule withCtlssVisaTransactionQualifiers(HexString ctlssVisaTransactionQualifiers) {
         this.ctlssVisaTransactionQualifiers = ctlssVisaTransactionQualifiers;
         return this;
     }
 
-    public List<Byte> getCtlssCupTransactionQualifiers() {
+    public HexString getCtlssCupTransactionQualifiers() {
         return ctlssCupTransactionQualifiers;
     }
 
-    public void setCtlssCupTransactionQualifiers(List<Byte> ctlssCupTransactionQualifiers) {
+    public void setCtlssCupTransactionQualifiers(HexString ctlssCupTransactionQualifiers) {
         this.ctlssCupTransactionQualifiers = ctlssCupTransactionQualifiers;
     }
 
-    public CardProductRule withCtlssCupTransactionQualifiers(List<Byte> ctlssCupTransactionQualifiers) {
+    public CardProductRule withCtlssCupTransactionQualifiers(HexString ctlssCupTransactionQualifiers) {
         this.ctlssCupTransactionQualifiers = ctlssCupTransactionQualifiers;
         return this;
     }
 
-    public List<Byte> getTerminalInterchangeProfile() {
+    public HexString getTerminalInterchangeProfile() {
         return terminalInterchangeProfile;
     }
 
-    public void setTerminalInterchangeProfile(List<Byte> terminalInterchangeProfile) {
+    public void setTerminalInterchangeProfile(HexString terminalInterchangeProfile) {
         this.terminalInterchangeProfile = terminalInterchangeProfile;
     }
 
-    public CardProductRule withTerminalInterchangeProfile(List<Byte> terminalInterchangeProfile) {
+    public CardProductRule withTerminalInterchangeProfile(HexString terminalInterchangeProfile) {
         this.terminalInterchangeProfile = terminalInterchangeProfile;
         return this;
     }
 
-    public List<Byte> getCombinationOptions() {
+    public HexString getCombinationOptions() {
         return combinationOptions;
     }
 
-    public void setCombinationOptions(List<Byte> combinationOptions) {
+    public void setCombinationOptions(HexString combinationOptions) {
         this.combinationOptions = combinationOptions;
     }
 
-    public CardProductRule withCombinationOptions(List<Byte> combinationOptions) {
+    public CardProductRule withCombinationOptions(HexString combinationOptions) {
         this.combinationOptions = combinationOptions;
         return this;
     }
 
-    public List<Byte> getTAC_Denial() {
+    public HexString getTAC_Denial() {
         return tAC_Denial;
     }
 
-    public void setTAC_Denial(List<Byte> tAC_Denial) {
+    public void setTAC_Denial(HexString tAC_Denial) {
         this.tAC_Denial = tAC_Denial;
     }
 
-    public CardProductRule withTAC_Denial(List<Byte> tAC_Denial) {
+    public CardProductRule withTAC_Denial(HexString tAC_Denial) {
         this.tAC_Denial = tAC_Denial;
         return this;
     }
 
-    public List<Byte> getTAC_Online() {
+    public HexString getTAC_Online() {
         return tAC_Online;
     }
 
-    public void setTAC_Online(List<Byte> tAC_Online) {
+    public void setTAC_Online(HexString tAC_Online) {
         this.tAC_Online = tAC_Online;
     }
 
-    public CardProductRule withTAC_Online(List<Byte> tAC_Online) {
+    public CardProductRule withTAC_Online(HexString tAC_Online) {
         this.tAC_Online = tAC_Online;
         return this;
     }
 
-    public List<Byte> getTAC_Default() {
+    public HexString getTAC_Default() {
         return tAC_Default;
     }
 
-    public void setTAC_Default(List<Byte> tAC_Default) {
+    public void setTAC_Default(HexString tAC_Default) {
         this.tAC_Default = tAC_Default;
     }
 
-    public CardProductRule withTAC_Default(List<Byte> tAC_Default) {
+    public CardProductRule withTAC_Default(HexString tAC_Default) {
         this.tAC_Default = tAC_Default;
         return this;
     }
@@ -525,15 +526,15 @@ public class CardProductRule {
         return this;
     }
 
-    public List<Byte> getCtlssPPassMagstripeVersion() {
+    public HexString getCtlssPPassMagstripeVersion() {
         return ctlssPPassMagstripeVersion;
     }
 
-    public void setCtlssPPassMagstripeVersion(List<Byte> ctlssPPassMagstripeVersion) {
+    public void setCtlssPPassMagstripeVersion(HexString ctlssPPassMagstripeVersion) {
         this.ctlssPPassMagstripeVersion = ctlssPPassMagstripeVersion;
     }
 
-    public CardProductRule withCtlssPPassMagstripeVersion(List<Byte> ctlssPPassMagstripeVersion) {
+    public CardProductRule withCtlssPPassMagstripeVersion(HexString ctlssPPassMagstripeVersion) {
         this.ctlssPPassMagstripeVersion = ctlssPPassMagstripeVersion;
         return this;
     }

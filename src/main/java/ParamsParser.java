@@ -5,12 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.inpas.type.*;
 import com.google.gson.annotations.SerializedName;
 
 public class ParamsParser {
@@ -286,6 +287,7 @@ public class ParamsParser {
 				}
 			}
 		}
+		initPrimitiveTypes(rootObject, fields);
 		return rootObject;
 	} 
 	
@@ -306,6 +308,9 @@ public class ParamsParser {
 		}else if(fieldType == Byte.class) {
 			Byte b = Arrays.copyOfRange(array, 1, array.length)[0];
 			field.set(rootObject, b);
+		}else if(fieldType == HexString.class) {
+			HexString str = new HexString(Arrays.copyOfRange(array, 1, array.length));
+			field.set(rootObject, str);
 		}else if(fieldType.isEnum()){
 			Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
 			Method method = fieldType.getMethod("fromValue", Integer.class);
@@ -360,6 +365,44 @@ public class ParamsParser {
 		}else{
 			System.out.println("Тип " + fieldType.toString() + " не поддерживается, "
 					+ "значение с TagID: " + obj.getTagId() + " не будет обработано" );
+		}
+	}
+	
+	private void initPrimitiveTypes(Object rootObject, Field[] fields) throws IllegalArgumentException, IllegalAccessException {
+		for (Field field : fields) {
+			Type type = field.getGenericType();
+			if(type instanceof Class<?>) {
+				field.setAccessible(true);
+				Object obj = field.get(rootObject);
+				if(obj == null) {
+					final Class<?> fieldType = field.getType();
+					if(fieldType == BigInteger.class) {
+						obj = new BigInteger("0");
+					}else if(fieldType == HexString.class) {
+						obj = new HexString();
+					}
+					field.set(rootObject, obj);
+				}
+			}
+		}
+	}
+	
+	private void initNullObjects(Object rootObject, Field[] fields) throws IllegalArgumentException, IllegalAccessException {
+		for (Field field : fields) {
+			Type type = field.getGenericType();
+			if(type instanceof Class<?>) {
+				field.setAccessible(true);
+				Object obj = field.get(rootObject);
+				if(obj == null) {
+					final Class<?> fieldType = field.getType();
+					try {
+						obj = fieldType.newInstance();
+						field.set(rootObject, obj);
+					}catch(InstantiationException ex) {
+						System.out.println("Объект "+ fieldType.getName()+" не будет инициализирован по умолчанию");
+					}
+				}
+			}
 		}
 	}
 }
