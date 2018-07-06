@@ -36,6 +36,7 @@ public class ParamsParser {
 		tlvFieldsRoot.put(32830,"AccountTypePreset");
 		tlvFieldsRoot.put(32843, "TemplatePreset");
 		tlvFieldsRoot.put(32808, "TerminalProfilePreset");
+		tlvFieldsRoot.put(32897, "UsersGroupPreset");
 		
 		tlvFields = new HashMap<Integer, String>();
 		tlvFields.put(0,"Anchor");
@@ -107,6 +108,13 @@ public class ParamsParser {
 		tlvFields.put(1128, "TemplateName");
 		tlvFields.put(1121, "TemplateType");
 		tlvFields.put(1122, "TemplateBody");
+		
+		//UserGroupPreset
+		tlvFields.put(32896, "UsersGroup");
+		tlvFields.put(1304, "UsersGroupName");
+		tlvFields.put(1305, "UsersGroupEnabledFinOperations");
+		tlvFields.put(1306, "UsersGroupEnabledServiceOperations");
+		tlvFields.put(1311, "UsersGroupRole");
 		
 		//TerminalProfilePreset
 		tlvFields.put(32809, "TerminalProfile");
@@ -302,6 +310,8 @@ public class ParamsParser {
 		}else if(fieldType == Integer.class) {
 			Integer value = byteArrayToInt(Arrays.copyOfRange(array, 1, array.length));
 			field.set(rootObject, value);
+		}else if(fieldType == BigInteger.class) {
+			field.set(rootObject, new BigInteger(Arrays.copyOfRange(array, 1, array.length)));
 		}else if(fieldType == Double.class) {
 			Double value = toDouble(Arrays.copyOfRange(array, 1, array.length));
 			field.set(rootObject, value);
