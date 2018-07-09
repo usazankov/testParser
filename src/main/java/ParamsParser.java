@@ -38,6 +38,9 @@ public class ParamsParser {
 		tlvFieldsRoot.put(32808, "TerminalProfilePreset");
 		tlvFieldsRoot.put(32897, "UsersGroupPreset");
 		tlvFieldsRoot.put(32807, "PossessorPreset");
+		tlvFieldsRoot.put(32846, "AcquiringPreset");
+		tlvFieldsRoot.put(32965, "ConnectionsServerPreset");
+		tlvFieldsRoot.put(32769, "Terminal");
 		
 		tlvFields = new HashMap<Integer, String>();
 		tlvFields.put(0,"Anchor");
@@ -116,6 +119,8 @@ public class ParamsParser {
 		tlvFields.put(1305, "UsersGroupEnabledFinOperations");
 		tlvFields.put(1306, "UsersGroupEnabledServiceOperations");
 		tlvFields.put(1311, "UsersGroupRole");
+		
+		//ConnectionsServerPreset
 		
 		//TerminalProfilePreset
 		tlvFields.put(32809, "TerminalProfile");
@@ -219,6 +224,112 @@ public class ParamsParser {
 		tlvFields.put(1168, "Logo");
 		tlvFields.put(1287, "CardHolderConfirmAmount");
 		tlvFields.put(1287, "CardHolderConfirmAmount");
+		
+		//AcquiringPreset
+		tlvFields.put(32841, "Acquiring");
+		tlvFields.put(1131, "AcquiringName");
+		tlvFields.put(32837, "PaymentSystemLinks");
+		tlvFields.put(32836, "PaymentSystemLink");
+		tlvFields.put(1117, "PaymentSystemRef");
+		tlvFields.put(1118, "AcquirerIdentifier");
+		tlvFields.put(32866, "AuthorisationHosts");
+		tlvFields.put(1618, "Host");
+		tlvFields.put(1146, "HostTimeZone");
+		tlvFields.put(1155, "SummerTime");
+		tlvFields.put(32852, "Reports");
+		tlvFields.put(1077, "ReconciliationReport");
+		tlvFields.put(1132, "KeyExchangeReport");
+		tlvFields.put(1133, "CheckLinkReport");
+		tlvFields.put(32863, "TechnicalParameters");
+		tlvFields.put(1147, "ReconciliationType");
+		tlvFields.put(1185, "EmptyReconciliation");
+		tlvFields.put(1149, "KeySchema");
+		tlvFields.put(1152, "SecureIso");
+		tlvFields.put(1280, "BatchOverflowReconciliation");
+		tlvFields.put(1281, "MaxOffline");
+		tlvFields.put(1374, "UseIssuerRefferal");
+		tlvFields.put(1542, "ResponseTimeout");
+		
+		//ConnectionsServerPreset
+		tlvFields.put(32966, "ConnectionsServer");
+		tlvFields.put(1618, "ConnectionName");
+		tlvFields.put(1410, "SSLConfigServerPortCertificatePath");
+		tlvFields.put(1080, "SSLClientCertificatePath");
+		tlvFields.put(1164, "SSLPrivateKeyPath");
+		tlvFields.put(1002, "Address");
+		
+		//TerminalPreset
+		tlvFields.put(1165, "XSD_Version");
+		tlvFields.put(1001, "TerminalId");
+		tlvFields.put(1438, "OwnerName");
+		tlvFields.put(1002, "Address");
+		tlvFields.put(1143, "TerminalTimeZone");
+		tlvFields.put(1155, "SummerTime");
+		tlvFields.put(1003, "Model");
+		tlvFields.put(1112, "TerminalCountryCode");
+		tlvFields.put(1204, "PriorLicense");
+		tlvFields.put(1440, "UseMainMenuPassword");
+		tlvFields.put(1441, "MainMenuPassword");
+		tlvFields.put(1250, "UploadLogsFlag");
+		tlvFields.put(1404, "LogSize");
+		tlvFields.put(1406, "LogMode");
+		tlvFields.put(32885, "Logging");
+		tlvFields.put(1312, "PowerSet");
+		tlvFields.put(1313, "WarningLevel");
+		tlvFields.put(1314, "BlockingLevel");
+		tlvFields.put(1315, "ShuttingLevel");
+		tlvFields.put(1004, "SerialNo");
+		tlvFields.put(32770, "PossessorLinks");
+		tlvFields.put(32772, "PossessorLink");
+		tlvFields.put(1009, "PossessorRef");
+		tlvFields.put(32773, "TerminalProfileLinks");
+		tlvFields.put(32778, "TerminalProfileLink");
+		tlvFields.put(1011, "TerminalProfileRef");
+		tlvFields.put(32774, "RegisteredTerminals");
+		tlvFields.put(32775, "RegisteredTerminal");
+		tlvFields.put(1012, "VirtualPOSID");
+		tlvFields.put(1453, "PosIDAddress");
+		tlvFields.put(1482, "PosIDPossessorName");
+		tlvFields.put(1113, "AcquiringRef");
+		tlvFields.put(1180, "KeyTemplateRef");
+		tlvFields.put(32881, "SecurityKeys");
+		tlvFields.put(32835, "WKey");
+		tlvFields.put(1109, "KeyProfile");
+		tlvFields.put(1111, "KeyValue");
+		tlvFields.put(1178, "UseLogins");
+		tlvFields.put(1199, "TypeUseLogins");
+		tlvFields.put(1179, "AutoLogin");
+		tlvFields.put(1310, "AutoLoginUsername");
+		tlvFields.put(1006, "LogoutCase");
+		tlvFields.put(1007, "CardLoginPassword");
+		tlvFields.put(32864, "TerminalEvents");
+		tlvFields.put(32865, "TerminalEvent");
+		tlvFields.put(1156, "EventType");
+		tlvFields.put(1157, "Periodicity");
+		tlvFields.put(1158, "EffectiveTime");
+		tlvFields.put(1159, "ExpiryTime");
+		tlvFields.put(1160, "WeekDays");
+		tlvFields.put(1161, "MonthDays");
+		tlvFields.put(1162, "EventDate");
+		tlvFields.put(1398, "EventPeriod");
+		tlvFields.put(1171, "CombineFunctions");
+		tlvFields.put(1417, "ResetReceipt");
+		tlvFields.put(1339, "TransactionScheme");
+		tlvFields.put(1340, "HotKeysProfile");
+		tlvFields.put(1349, "PicturesGroupTypeSelectedTerminal");
+		tlvFields.put(1350, "PicturesGroupSelectedTerminal");
+		tlvFields.put(1422, "ReportRepeat");
+		tlvFields.put(1522, "PromptPrintDecline");
+		tlvFields.put(1477, "WaitPinTimeout");
+		tlvFields.put(1005, "Description");
+		tlvFields.put(1384, "TerminalVariable");
+		tlvFields.put(1538, "UseEnergySaving");
+		tlvFields.put(1468, "BackLightTimeout");
+		tlvFields.put(1469, "SleepTime");
+		tlvFields.put(1470, "HibernateTimeout");
+		tlvFields.put(1471, "ShutdownTimeout");
+		tlvFields.put(1534, "KeyboardLock");
+		
 	}
 	
 	public int byteArrayToInt(byte[] b) 

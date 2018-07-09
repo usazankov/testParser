@@ -37,6 +37,9 @@ public class LibraryTest {
 	    Path path7 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Profile.pst");
 	    Path path8 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/UsersGroups.pst");
 	    Path path9 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Possessor.pst");
+	    Path path10 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Acquiring.pst");
+	    Path path11 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Connections.pst");
+	    Path path12 = Paths.get("C:/Users/y_sazankov/eclipse-java/TLV_Parser/tlv/Terminal.pst");
 	    byte[] data = Files.readAllBytes(path);
 	    byte[] data2 = Files.readAllBytes(path2);
 	    byte[] data3 = Files.readAllBytes(path3);
@@ -46,6 +49,9 @@ public class LibraryTest {
 	    byte[] data7 = Files.readAllBytes(path7);
 	    byte[] data8 = Files.readAllBytes(path8);
 	    byte[] data9 = Files.readAllBytes(path9);
+	    byte[] data10 = Files.readAllBytes(path10);
+	    byte[] data11 = Files.readAllBytes(path11);
+	    byte[] data12 = Files.readAllBytes(path12);
         ParamsParser parser = new ParamsParser();
         parser.init();
         try {
@@ -59,7 +65,9 @@ public class LibraryTest {
             TerminalProfilePreset profile = parser.parse(data7, TerminalProfilePreset.class);
             UsersGroupPreset users = parser.parse(data8, UsersGroupPreset.class);
             PossessorPreset possessors = parser.parse(data9, PossessorPreset.class);
-
+            AcquiringPreset acquiring = parser.parse(data10, AcquiringPreset.class);
+            ConnectionsServerPreset con = parser.parse(data11, ConnectionsServerPreset.class);
+            TerminalPreset term = parser.parse(data12, TerminalPreset.class);
             long end = System.currentTimeMillis();
             users.getUsersGroupPreset();
             System.out.println("TimeLeft:" + (double)(end - start) / 1000);

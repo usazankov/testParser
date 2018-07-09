@@ -1,113 +1,92 @@
 <Block>
-Checksum="45 A8 1E 1B B5 C0 80 72 58 07 18 48 41 C8 93 72"
+Checksum="B0 17 06 1E 40 6B F7 FA A0 25 00 0D 25 2F 2E 9C"
 Type="81"
 Path="Terminal.pst"
-BlockSize="1187"
+BlockSize="1094"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="CF 38 91 ED 20 32 68 EE ED 23 CA 29 FF D4 D3 2F"
-Type="81"
-Path="Common.pst"
-BlockSize="371"
-RecordSize="1"
-</Block>
-<Block>
-Checksum="63 C7 34 D5 86 A6 26 17 1B E1 8E DF E5 6C 5B 61"
+Checksum="9E 90 D8 DC 18 DB DE 37 14 B2 30 63 B0 42 B4 CF"
 Type="81"
 Path="Possessor.pst"
-BlockSize="367"
+BlockSize="353"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="4F 91 31 78 D6 08 BE 10 D4 58 16 E0 01 FA AE BF"
+Checksum="EB 60 CE 55 D2 9A F2 70 F3 FB 9A 0A 52 41 3B 28"
 Type="81"
 Path="Currency.pst"
 BlockSize="168"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="7A E2 36 61 46 9F 24 D8 E0 B2 AC 95 78 7A BC 79"
+Checksum="E7 FB 03 E1 E8 E9 93 7B 57 CC 16 BD C8 D1 7A 4E"
 Type="81"
 Path="UsersGroups.pst"
 BlockSize="705"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="E0 1A 74 14 16 74 27 97 0B 42 94 32 7D 6E A7 CB"
+Checksum="CB CB 99 60 17 B6 5A 28 BF CA AF B2 9E A4 3B D9"
+Type="81"
+Path="Common.pst"
+BlockSize="172"
+RecordSize="1"
+</Block>
+<Block>
+Checksum="19 EF 9C D6 99 59 F3 36 CD 5A F3 4A 49 FE E9 BD"
 Type="81"
 Path="Template.pst"
 BlockSize="18311"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="9D EE 95 E5 2A 99 1E 99 CB 5A 9A 6E 2E 20 E5 87"
+Checksum="35 78 50 03 30 9D 9E 65 D5 AE 94 8D 34 72 A0 16"
 Type="81"
 Path="Profile.pst"
-BlockSize="695"
+BlockSize="1611"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="C5 8C 2B 72 E0 CD 53 A1 CF E6 BB 18 88 03 1C 79"
+Checksum="F3 5E DC F7 9D 62 DD F8 56 E6 A2 5A 3D AB CA DD"
 Type="81"
 Path="Card.pst"
 BlockSize="260"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="64 3C EC 4B 68 B8 6B D4 80 AD 96 9B 9E 4A DB BA"
+Checksum="92 D7 B0 1C 49 C4 6F FC 14 05 DD B1 AF 86 8F 9D"
 Type="81"
 Path="Acquiring.pst"
-BlockSize="417"
+BlockSize="358"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="7C B8 54 B3 2E E6 FD 69 C0 4D F4 42 DE 6C F4 6A"
+Checksum="CA B0 07 29 CF C3 CC 86 F0 32 7A 72 77 4B 8E 87"
 Type="81"
 Path="Paysys.pst"
-BlockSize="2427"
+BlockSize="2382"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="2B 2F 46 C9 84 C4 D6 62 18 53 88 0B 16 6C 42 3F"
+Checksum="A1 85 95 2B F2 39 84 AD 47 BC 04 50 9E E1 B1 DF"
 Type="81"
-Path="Net.pst"
-BlockSize="109"
+Path="Connections.pst"
+BlockSize="115"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="AA 88 1C 23 75 E8 68 76 F0 E1 1E 09 9D AB 89 11"
-Type="81"
-Path="PhoneZone.pst"
-BlockSize="105"
-RecordSize="1"
-</Block>
-<Block>
-Checksum="89 74 EC AF 3D 5D 76 E1 36 F1 8D 2D DF B2 9C 43"
+Checksum="22 C9 8E F0 9F 47 5C E5 27 1E CF C2 C3 B9 00 3E"
 Type="81"
 Path="Keys.pst"
-BlockSize="92"
+BlockSize="58"
 RecordSize="1"
 </Block>
 <Block>
-Checksum="AE CB 77 CB 18 7D 66 8D 64 5F E5 AC DC 5C 61 12"
-Type="81"
-Path="NSP.pst"
-BlockSize="107"
-RecordSize="1"
-</Block>
-<Block>
-Checksum="AF FF 62 63 75 27 8E F4 F0 83 E0 F2 85 8B CF 63"
-Type="81"
-Path="Plugins.pst"
-BlockSize="6"
-RecordSize="1"
-</Block>
-<Block>
-Checksum="32 BC 0F D0 91 61 0B B2 4D 3E FF 60 0B 13 15 54"
+Checksum="E0 3C D3 4B 13 05 CE 3F C3 8F FC D0 0B FD 42 E5"
 Type="81"
 Path="Account.pst"
-BlockSize="131"
+BlockSize="6"
 RecordSize="1"
 </Block>
 <Block>
